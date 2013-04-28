@@ -1,23 +1,25 @@
-<?
+<?php
 class User extends CI_Model {
-
-    function __construct()
-    {
+	
+    function __construct(){
         // Call the Model constructor
         parent::__construct(); 
+        $this->load->database();
     }
     
     function get($params=null){
 		$this->db->select('*');
 		$this->db->from('user');
 		$where = ' 1=1 ';
+		/*
 		if(isset($this->searchQ)){
 			$q = $this->db->escape('%'.$this->searchQ.'%');
 			$where .= " AND ((LOWER(user.name) LIKE $q) OR (LOWER(user.email) LIKE $q)
 						OR (LOWER(user.id) LIKE $q))";
 		}
+		*/
 		if(isset($this->id)){
-			$where .= ' AND user.id = '.$this->id;
+			$where .= ' AND user.uid = '.$this->id;
 		}		
 		if($params){
 			$params['user.active']=1;

@@ -2,16 +2,22 @@
 
 class Pub extends CI_Controller {
 	public function index(){
-		$user = $this->db->query('select * from user');
-		dump($user);
+		#$user = $this->db->query('select * from user');
+		#var_dump($user);
+		$this->load->model('User');
+		$this->User->id = '2';
+		$user = current($this->User->get());
+		print_r($user);
 	}
 	public function user(){
-		$user_id = $this->input->post('user_id');
-		$user = $this->db->query('select * from user');
-		$this->load->model('User', false, true);
-		$this->User->id = '2';
+		#$user_id = $this->input->post('user_id');
+		#$this->load->database();
+		#$query = $this->db->query('select * from user');
+		#echo '1';
+		$this->load->model('User');
+		$this->User->id = 1;
 		#$user = current($this->User->get());
-		dump($user);
+		#echo $user['uid'];
 	}
 }
 ?>
