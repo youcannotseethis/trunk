@@ -57,7 +57,6 @@ class User extends CI_Model {
 		 $this->db->where('name', $username);
 		 $this->db->where('password', $password);#$this->prep_password($password));
 		 $query = $this->db->get('user', 1);
-		#dump($query);
 		 if ( $query->num_rows() == 1) {
 			$user = current($query->result_array());
 			#$user['permission_array'] = explode(',',$user['permissions']);
