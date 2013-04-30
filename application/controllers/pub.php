@@ -22,7 +22,7 @@ class Pub extends CI_Controller {
 	}
 	public function attempt_login(){
 	
-	 ini_set ('display_errors', '1');  
+	 	ini_set ('display_errors', '1');  
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -59,10 +59,33 @@ class Pub extends CI_Controller {
 	public function attemp_signup(){
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('uname', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		dump($post);
+		$this->form_validation->set_rules('password', 'Password', 'required|matches[password1]');
+		$this->form_validation->set_rules('password1', 'Password Confirmation', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		if ($this->form_validation->run() == false){
+			exit(json_encode($this->form_validation->error_array()));
+		}else{
+			$this->load->model('User');
+			$user = $this->input->post();
+			unset($user['password1']);
+			$user_id = $this->User->insert($user);
+			$this->User->login($this->input->post('name'),$this->input->post('password'));
+			$this->load->helper('url');
+			redirect('/index.php/home', 'location'); 
+		}
 	}
 
-	
+	if ($this->form_validation->run() == false){
+			exit(json_encode($this->form_validation->error_array()));
+		}else{
+			$this->load->model('User',false,true);
+			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
+				$this->load->helper('url');
+				redirect('/index.php/home', 'location'); 
+				#exit($ref?$ref:'/trunk/index.php/home');
+			}else{
+				exit(json_encode(array('name'=>'Bad credentials')));
+			}
+		}
 }
 ?>

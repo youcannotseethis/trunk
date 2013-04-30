@@ -1,6 +1,6 @@
 <form action="/trunk/index.php/pub/signup" method="post" onsubmit="validateForm(this);return false;">
 	<fieldset>
-		<div class="title">Create Account</div>
+		<h1>Create Account</h1>
 		<div class=" has_floats">
 			<div class="float_left">
 				<label for="name">Username</label>
@@ -13,7 +13,12 @@
 				<input type="password" value="" name="password"/>
 			</div>
 		</div>
-
+		<div class="has_floats">
+			<div class="float_left">
+				<label for="password1">Password Confirm</label>
+				<input type="password" value="" name="password1"/>
+			</div>
+		</div>
 		<div class="has_floats">
 			<div class="float_left">
 				<label for="email">Email</label>

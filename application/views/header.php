@@ -23,12 +23,12 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <a class="brand" href="#">Project name</a>
+	          <a class="brand" href="">Project name</a>
 	          <div class="nav-collapse collapse">
 	            <ul class="nav">
-	              <li class="active"><a href="#">Home</a></li>
-	              <li><a href="#about">About</a></li>
-	              <li><a href="#about2">About2</a></li>			
+	              <li class="active"><a href="">Home</a></li>
+	              <li><a href="about">About</a></li>
+	              <li><a href="about2">About2</a></li>			
 	            </ul>
 				<ul class="nav pull-right">
 					<?php if (!$_SESSION) { ?> <!-- not login yet -->

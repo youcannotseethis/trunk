@@ -21,11 +21,12 @@ class Home extends CI_Controller {
 		#if(!(isset($this->no_view)&&$this->no_view))
 		#	echo make_view($this,$data);
 	}	
-	public function user(){
+	public function profile(){
 		auth_route('user');
 		#$user_id = $this->input->post('user_id');
+		$user = $_SESSION['user'];
 		$this->load->model('User');
-		$this->User->uid = '3';
+		$this->User->uid = $user['uid'];
 		$user = current($this->User->get());
 		dump($user);
 		#dump($_SESSION);
