@@ -31,7 +31,9 @@ class Pub extends CI_Controller {
 		$this->load->helper('url');
 		$this->noView = true;
 		redirect('/login', 'location');
-		
+	}
+	public function login(){
+		$this->load->view('login');
 	}
 	
 }
