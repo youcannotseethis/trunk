@@ -22,7 +22,6 @@ class Home extends CI_Controller {
 	}	
 	public function user(){
 		#$user_id = $this->input->post('user_id');
-		
 		$this->load->model('User');
 		$this->User->id = '2';
 		$user = current($this->User->get());
