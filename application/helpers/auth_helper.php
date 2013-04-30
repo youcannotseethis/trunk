@@ -6,7 +6,7 @@ if ( ! function_exists('auth_helper'))
 		$CI->load->helper('url');
 		$user = $_SESSION['user'];
 		if($perms && !$user){
-			$redirect_url = '/login';  
+			$redirect_url = '/index.php/login';  
 		}elseif($perms){
 			//we are user but do we have permission to be here?
 			if(!auth($perms) && !$redirect_url)
@@ -58,7 +58,7 @@ if ( ! function_exists('auth'))
 			return false;
 			*/
 		}
-		return true;
+		return false;
 		
 	}
 }

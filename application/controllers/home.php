@@ -2,8 +2,7 @@
 
 class Home extends CI_Controller {
 	public function index(){
-		echo 'm';
-		#$this->load->view('4sq.html');
+		auth_route('user');
 	}
 	
  	public function __construct(){
