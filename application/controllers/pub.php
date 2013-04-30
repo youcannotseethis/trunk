@@ -2,12 +2,27 @@
 
 class Pub extends CI_Controller {
 	public function index(){
-		#$user = $this->db->query('select * from user');
-		#var_dump($user);
+
 		
+	}
+	public function __construct(){
+		parent::__construct();
+		session_start();
+		$this->data = array();
+		$this->title = '';
+		$this->load->view('header');
+		$this->load->view('footer');
+    }
+	public function __destruct(){
+		if(!$this->noView){
+			$data = $this->data;
+			$data['title'] = $this->title;
+			echo make_view($this,$data);
+		}
 	}
 	public function attempt_login(){
 	$this->load->helper('view_helper');
+	
 	 ini_set ('display_errors', '1');  
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Username', 'required');
