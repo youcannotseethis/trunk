@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 		$this->data = array();
 		$this->title = '';
 		$this->load->helper('view_helper');
-	#	$this->load->view('
+		$this->load->view('header');
     }
 	public function __destruct(){
 		$data = $this->data;

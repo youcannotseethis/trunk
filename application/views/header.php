@@ -8,7 +8,10 @@
   </head>
   <body>
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="../../assets/js/bootstrap.js"></script>
+    <script src="/index.php/assets/js/bootstrap.js"></script>
+
+
+
 	<div id="wrap">
 	
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,7 +30,7 @@
 	              <li><a href="#about2">About2</a></li>			
 	            </ul>
 				<ul class="nav pull-right">
-					<?php if (false) { ?> <!-- not login yet -->
+					<?php if (true) { ?> <!-- not login yet -->
 					<li><a href="#login" class ="pull-right">JOIN US!</a><li>
 					<?php } else { ?> <!-- already login -->						
 				    <li class="dropdown">
@@ -37,7 +40,7 @@
 				     </a>
 					 <ul class="dropdown-menu">
 			  	     <li><a href="#profile">Profile</a></li>
-			  	      <li><a href="#logout">Log out</a></li>	
+			  	      <li><a href="/index.php/pub/logout">Log out</a></li>	
 					  </ul>
 					</li>	
 				    <?php } ?>
