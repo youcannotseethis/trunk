@@ -4,11 +4,11 @@
     <title>JINGO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="../../assets/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/trunk/assets/css/bootstrap.css" rel="stylesheet" media="screen">
   </head>
   <body>
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="/index.php/assets/js/bootstrap.js"></script>
+    <script src="/trunk/assets/js/bootstrap.js"></script>
 
 
 

@@ -11,7 +11,7 @@ class Pub extends CI_Controller {
 		$this->data = array();
 		$this->title = '';
 		$this->load->view('header');
-		$this->load->helper('view_helper');
+		#$this->load->helper('view_helper');
     }
 	public function __destruct(){
 		if(!$this->noView){
