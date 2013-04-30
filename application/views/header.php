@@ -27,7 +27,20 @@
 	              <li><a href="#about2">About2</a></li>			
 	            </ul>
 				<ul class="nav pull-right">
+					<?php if (false) { ?> <!-- not login yet -->
 					<li><a href="#login" class ="pull-right">JOIN US!</a><li>
+					<?php } else { ?> <!-- already login -->						
+				    <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						      Me
+						      <b class="caret"></b>
+				     </a>
+					 <ul class="dropdown-menu">
+			  	     <li><a href="#profile">Profile</a></li>
+			  	      <li><a href="#logout">Log out</a></li>	
+					  </ul>
+					</li>	
+				    <?php } ?>
 				</ul>
 	          </div><!--/.nav-collapse -->
 	        </div>
