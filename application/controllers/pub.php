@@ -34,7 +34,7 @@ class Pub extends CI_Controller {
 			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
 				$this->load->helper('url');
 				redirect('/index.php/home', 'location'); 
-				exit($ref?$ref:'/trunk/index.php/home');
+				#exit($ref?$ref:'/trunk/index.php/home');
 			}else{
 				exit(json_encode(array('name'=>'Bad credentials')));
 			}
@@ -42,7 +42,7 @@ class Pub extends CI_Controller {
 	}
 	public function login(){
 		$this->load->view('login');
-			$this->load->view('footer');
+		$this->load->view('footer');
 	
 	}
 	public function logout(){
@@ -50,7 +50,7 @@ class Pub extends CI_Controller {
 		session_destroy();
 		$this->load->helper('url');
 		#$this->noView = true;
-		redirect('pub/login', 'location');
+		redirect('/index.php/login', 'location');
 	}
 	public function signup(){
 		$this->load->view('signup.php');
