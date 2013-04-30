@@ -50,7 +50,7 @@ class Pub extends CI_Controller {
 		session_destroy();
 		$this->load->helper('url');
 		#$this->noView = true;
-		redirect('/login', 'location');
+		redirect('pub/login', 'location');
 	}
 	public function signup(){
 		$this->load->view('signup.php');

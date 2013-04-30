@@ -30,8 +30,9 @@
 	              <li><a href="#about2">About2</a></li>			
 	            </ul>
 				<ul class="nav pull-right">
-					<?php if (true) { ?> <!-- not login yet -->
-					<li><a href="#login" class ="pull-right">JOIN US!</a><li>
+					<?php if (!$_SESSION) { ?> <!-- not login yet -->
+					<li><a href="login" class ="pull-right"> Sign In </a><li>
+					<li><a href="signup" class ="pull-right">JOIN US!</a><li>
 					<?php } else { ?> <!-- already login -->						
 				    <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -39,8 +40,8 @@
 						      <b class="caret"></b>
 				     </a>
 					 <ul class="dropdown-menu">
-			  	     <li><a href="#profile">Profile</a></li>
-			  	      <li><a href="/index.php/pub/logout">Log out</a></li>	
+			  	     <li><a href="profile">Profile</a></li>
+			  	      <li><a href="logout">Log out</a></li>	
 					  </ul>
 					</li>	
 				    <?php } ?>
