@@ -21,6 +21,12 @@ class User extends CI_Model {
 		if(isset($this->id)){
 			$where .= ' AND user.uid = '.$this->id;
 		}		
+		if(isset($this->uname)){
+			$where .= ' AND user.uname = '.$this->uname;
+		}
+		if(isset($this->password)){
+			$where .= ' AND user.password = '.$this->password;
+		}
 		if($params){
 			$params['user.active']=1;
 			$this->db->where($params);	

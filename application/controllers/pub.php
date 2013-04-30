@@ -11,13 +11,13 @@ class Pub extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
-		#$ref = $this->input->post('referral');
+		$ref = $this->input->post('referral');
 		if ($this->form_validation->run() == false){
 			exit(json_encode($this->form_validation->error_array()));
 		}else{
 			$this->load->model('User',false,true);
 			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
-				#exit($ref?$ref:'/home');
+				exit($ref?$ref:'/trunk/index.php/home');
 			}else{
 				exit(json_encode(array('name'=>'Bad credentials')));
 			}
