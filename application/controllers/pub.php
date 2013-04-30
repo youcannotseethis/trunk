@@ -11,17 +11,14 @@ class Pub extends CI_Controller {
 		$this->data = array();
 		$this->title = '';
 		$this->load->view('header');
-		#$this->load->helper('view_helper');
     }
 	public function __destruct(){
 		if(!$this->noView){
 			$data = $this->data;
 			$data['title'] = $this->title;
-			#echo make_view($this,$data);
 		}
 	}
 	public function attempt_login(){
-	
 	 	ini_set ('display_errors', '1');  
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Username', 'required');
