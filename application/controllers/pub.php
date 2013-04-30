@@ -54,8 +54,13 @@ class Pub extends CI_Controller {
 	}
 	public function signup(){
 		$this->load->view('signup.php');
-			$this->load->view('footer');
-	
+		$this->load->view('footer');
+	}
+	public function attemp_signup(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('uname', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		dump($post);
 	}
 
 	

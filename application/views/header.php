@@ -36,7 +36,7 @@
 					<li><a href="signup" class ="pull-right">JOIN US!</a><li>
 					<?php } else { ?> <!-- already login -->						
 				    <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown">
 						      Me
 						      <b class="caret"></b>
 				     </a>
