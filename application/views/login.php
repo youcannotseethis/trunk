@@ -1,7 +1,7 @@
 <form action="/pub/attempt_login" method="post" onsubmit="validateForm(this);return false;">
 	<fieldset>
-		<div class="title">Client Log In</div>
-		<input type="hidden" value="<?=$this->input->get('referral')?('/'.$this->input->get('referral')):''?>" name="referral"/>
+		<div class="title">Log In</div>
+		<? #<input type="hidden" value="<?=$this->input->get('referral')?('/'.$this->input->get('referral')):''?>" name="referral"/>?>
 		<div class="row has_floats">
 			<div class="form_input float_left">
 				<label for="name">Username</label>
