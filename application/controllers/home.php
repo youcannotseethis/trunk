@@ -24,6 +24,7 @@ class Home extends CI_Controller {
 		#	echo make_view($this,$data);
 	}	
 	public function user(){
+		auth_route('user');
 		#$user_id = $this->input->post('user_id');
 		$this->load->model('User');
 		$this->User->uid = '3';
