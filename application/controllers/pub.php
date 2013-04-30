@@ -73,19 +73,9 @@ class Pub extends CI_Controller {
 			$this->load->helper('url');
 			redirect('/index.php/home', 'location'); 
 		}
+		
 	}
 
-	if ($this->form_validation->run() == false){
-			exit(json_encode($this->form_validation->error_array()));
-		}else{
-			$this->load->model('User',false,true);
-			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
-				$this->load->helper('url');
-				redirect('/index.php/home', 'location'); 
-				#exit($ref?$ref:'/trunk/index.php/home');
-			}else{
-				exit(json_encode(array('name'=>'Bad credentials')));
-			}
-		}
+	
 }
 ?>
