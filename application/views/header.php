@@ -27,11 +27,7 @@
 	              <li><a href="#about2">About2</a></li>			
 	            </ul>
 				<ul class="nav pull-right">
-					<?php if ture ?>  <!-- TODO if not login -->
 					<li><a href="#login" class ="pull-right">JOIN US!</a><li>
-					<?php else ?> <!-- TODO if login -->
-				   <li><a href="#logout" class ="pull-right">LOGOUT:(</a><li>
-					<?php endif ?>
 				</ul>
 	          </div><!--/.nav-collapse -->
 	        </div>
@@ -39,7 +35,6 @@
 	    </div>
 		
 	<div class="container"> 
-		<b> It works! </b>
 		<!-- insert our page here -->
 	
 	
