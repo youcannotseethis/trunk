@@ -36,15 +36,14 @@
 					<li><a href="signup" class ="pull-right">JOIN US!</a><li>
 					<?php } else { ?> <!-- already login -->						
 				    <li class="dropdown">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">
-						      Me
-						      <b class="caret"></b>
-				     </a>
-					 <ul class="dropdown-menu">
-			  	     <li><a href="profile">Profile</a></li>
-			  	      <li><a href="logout">Log out</a></li>	
-					  </ul>
-
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Me
+						<b class="caret"></b>
+				        </a>
+					      <ul class="dropdown-menu">
+			  	            <li><a href="profile">Profile</a></li>
+			  	            <li><a href="logout">Log out</a></li>	
+					      </ul>
 					</li>	
 				    <?php } ?>
 				</ul>
