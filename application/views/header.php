@@ -11,7 +11,7 @@
   </head>
   <body>
     <script src="http://code.jquery.com/jquery.js"></script>
-    <?php echo "<link href=".BASE_URI."assets/js/bootstrap.js></script>" ?>    
+    <?php echo "<script src=".BASE_URI."assets/js/bootstrap.js></script>" ?>    
 
 	<div id="wrap">
 	
@@ -36,14 +36,14 @@
 					<li><a href="signup" class ="pull-right">JOIN US!</a><li>
 					<?php } else { ?> <!-- already login -->						
 				    <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						      Me
-						      <b class="caret"></b>
-				     </a>
-					 <ul class="dropdown-menu">
-			  	     <li><a href="profile">Profile</a></li>
-			  	      <li><a href="logout">Log out</a></li>	
-					  </ul>
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Me
+						<b class="caret"></b>
+				        </a>
+					      <ul class="dropdown-menu">
+			  	            <li><a href="profile">Profile</a></li>
+			  	            <li><a href="logout">Log out</a></li>	
+					      </ul>
 					</li>	
 				    <?php } ?>
 				</ul>
