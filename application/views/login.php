@@ -1,5 +1,6 @@
 <form action="/trunk/index.php/pub/attempt_login" method="post" onsubmit="validateForm(this);return false;">
 	<fieldset>
+		
 		<div class="title">Log In</div>
 		 <input type="hidden" value="<?=$this->input->get('referral')?('/'.$this->input->get('referral')):''?>" name="referral"/>
 		<div class="row has_floats">
@@ -20,3 +21,4 @@
 		</div>
 	</fieldset>
 </form>
+
