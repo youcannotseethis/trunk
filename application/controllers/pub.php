@@ -6,14 +6,7 @@ class Pub extends CI_Controller {
 		#var_dump($user);
 		
 	}
-	public function user(){
-		#$user_id = $this->input->post('user_id');
-		
-		$this->load->model('User');
-		$this->User->id = '2';
-		$user = current($this->User->get());
-		$this->dump($user);
-	}
+
 	public function logout(){
 		#$this->session->sess_destroy();
 		unset($_SESSION);
