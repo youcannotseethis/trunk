@@ -18,8 +18,8 @@ class User extends CI_Model {
 						OR (LOWER(user.id) LIKE $q))";
 		}
 		*/
-		if(isset($this->id)){
-			$where .= ' AND user.uid = '.$this->id;
+		if(isset($this->uid)){
+			$where .= ' AND user.uid = '.$this->uid;
 		}		
 		if(isset($this->uname)){
 			$where .= ' AND user.uname = '.$this->uname;
@@ -47,7 +47,7 @@ class User extends CI_Model {
 			$arr['password'] =  $this->prep_password($arr['password']);
 		}
 		*/
-		$this->db->update('user', $arr, array('id' => $id));
+		$this->db->update('user', $arr, array('uid' => $id));
 	}
 	function insert($arr){
 		$arr['dt_inserted'] = $arr['dt_edited'] = MYSQL_NOW;
@@ -60,7 +60,7 @@ class User extends CI_Model {
 	}
 	 
 	function login($username, $password){
-		 $this->db->where('name', $username);
+		 $this->db->where('uname', $username);
 		 $this->db->where('password', $password);#$this->prep_password($password));
 		 $query = $this->db->get('user', 1);
 		 if ( $query->num_rows() == 1) {

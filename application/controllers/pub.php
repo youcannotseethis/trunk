@@ -7,6 +7,7 @@ class Pub extends CI_Controller {
 		
 	}
 	public function attempt_login(){
+	$this->load->helper('view_helper');
 	 ini_set ('display_errors', '1');  
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Username', 'required');
@@ -17,25 +18,29 @@ class Pub extends CI_Controller {
 		}else{
 			$this->load->model('User',false,true);
 			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
+				$this->load->helper('url');
+				redirect('/index.php/home', 'location'); 
 				exit($ref?$ref:'/trunk/index.php/home');
 			}else{
 				exit(json_encode(array('name'=>'Bad credentials')));
 			}
 		}
 	}
-	
+	public function login(){
+		$this->load->view('login');
+		$this->load->helper('url');
+	}
 	public function logout(){
-		#$this->session->sess_destroy();
 		unset($_SESSION);
 		session_destroy();
 		$this->load->helper('url');
 		$this->noView = true;
 		redirect('/login', 'location');
 	}
-
-	public function login(){
-		$this->load->view('login');
+	public function signup(){
+		$this->load->view('signup.php');
 	}
+
 	
 }
 ?>

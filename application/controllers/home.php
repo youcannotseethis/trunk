@@ -9,10 +9,12 @@ class Home extends CI_Controller {
  	public function __construct(){
 		parent::__construct();
 		session_start();
-		$this->user = $_SESSION['user'];
-		$this->user_id = $this->user['id'];
+		#$this->user = $_SESSION['user'];
+		#$this->user_id = $this->user['id'];
 		$this->data = array();
 		$this->title = '';
+		$this->load->helper('view_helper');
+	#	$this->load->view('
     }
 	public function __destruct(){
 		$data = $this->data;
@@ -21,12 +23,12 @@ class Home extends CI_Controller {
 		#	echo make_view($this,$data);
 	}	
 	public function user(){
-		$this->load->helper('view_helper');
 		#$user_id = $this->input->post('user_id');
 		$this->load->model('User');
-		$this->User->id = '1';
+		$this->User->uid = '3';
 		$user = current($this->User->get());
 		dump($user);
+		#dump($_SESSION);
 	}
 	public function foursquare(){
 		#echo 'm';
