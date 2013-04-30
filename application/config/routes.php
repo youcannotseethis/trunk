@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "pub";
 $route['404_override'] = '';
 $route['logout'] = "pub/logout";
 $route['login'] = "pub/login";
