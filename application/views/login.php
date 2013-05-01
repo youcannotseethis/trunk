@@ -15,7 +15,6 @@
 				<input type="password" value="" name="password"/>
 			</div>
 		</div>
-		
 		<div class="row has_floats">
 			<input type="submit" value="Login" class="button float_right"/>
 		</div>

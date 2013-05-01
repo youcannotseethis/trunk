@@ -1,10 +1,10 @@
-<form action="/trunk/index.php/pub/signup" method="post" onsubmit="validateForm(this);return false;">
+<form action="/trunk/index.php/pub/attempt_signup" method="post" onsubmit="validateForm(this);return false;">
 	<fieldset>
 		<h1>Create Account</h1>
 		<div class=" has_floats">
 			<div class="float_left">
 				<label for="name">Username</label>
-				<input type="text" value="" name="name"/>
+				<input type="text" value="" name="uname"/>
 			</div>
 		</div>
 		<div class="has_floats">
@@ -33,8 +33,8 @@
 		</div>
 		<div class="has_floats">
 			<div class="float_left">
-				<label for="discription">Discription</label>
-				<input type="text" value="" name="discription"/>
+				<label for="description">Description</label>
+				<input type="text" value="" name="description"/>
 			</div>
 		</div>
 		

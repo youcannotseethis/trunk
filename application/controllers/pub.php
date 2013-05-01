@@ -52,7 +52,7 @@ class Pub extends CI_Controller {
 		$this->load->view('signup.php');
 		$this->load->view('footer');
 	}
-	public function attemp_signup(){
+	public function attempt_signup(){
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('uname', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required|matches[password1]');
@@ -64,6 +64,7 @@ class Pub extends CI_Controller {
 			$this->load->model('User');
 			$user = $this->input->post();
 			unset($user['password1']);
+			#dump($user);exit;
 			$user_id = $this->User->insert($user);
 			$this->User->login($this->input->post('name'),$this->input->post('password'));
 			$this->load->helper('url');

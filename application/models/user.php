@@ -42,7 +42,7 @@ class User extends CI_Model {
     }
 	
 	function update($arr,$id){
-		$arr['dt_edited'] = MYSQL_NOW;
+		$arr['dt_edited'] = date('Y-m-d H:i:s',time());
 		/*if(isset($arr['password'])){
 			$arr['password'] =  $this->prep_password($arr['password']);
 		}
@@ -50,7 +50,7 @@ class User extends CI_Model {
 		$this->db->update('user', $arr, array('uid' => $id));
 	}
 	function insert($arr){
-		$arr['dt_inserted'] = $arr['dt_edited'] = MYSQL_NOW;
+		$arr['dt_inserted'] = $arr['dt_edited'] = date('Y-m-d H:i:s',time());
 		$arr['password'] = $arr['password'];//$this->prep_password($arr['password']);
 		$this->db->insert('user', $arr);
 		return $this->db->insert_id();
