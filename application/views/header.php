@@ -36,8 +36,8 @@
               </ul>  
         <ul class="nav pull-right">
           <?php if (!$_SESSION) { ?> <!-- not login yet -->
-          <li><a href="/index.php/login" class ="pull-right"> Sign In </a><li>
-          <li><a href="/index.php/signup" class ="pull-right">JOIN US!</a><li>
+          <li><a href="/trunk/index.php/login" class ="pull-right"> Sign In </a><li>
+          <li><a href="/trunk/index.php/signup" class ="pull-right">JOIN US!</a><li>
           <?php } else { ?> <!-- already login -->            
             <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -45,8 +45,8 @@
                   <b class="caret"></b>
              </a>
            <ul class="dropdown-menu">
-               <li><a href="/index.php/setting/set_profile?uid=<?php echo $_SESSION['user']['uid']?> >Setting</a></li>
-                <li><a href="/index.php/logout">Log out</a></li>  
+               <li><a href="/trunk/index.php/setting/set_profile?uid=<?php echo $_SESSION['user']['uid'];?>" >Setting</a></li>
+                <li><a href="/trunk/index.php/logout">Log out</a></li>  
             </ul>
 
           </li>  

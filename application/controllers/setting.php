@@ -22,7 +22,7 @@ class Setting extends CI_Controller {
 	public function set_profile(){
 		auth_route('user');
 		$user = $_SESSION['user'];
-		dump($_SESSION['user']);
+		#dump($_SESSION['user']);
 		$user_id = $this->input->get('uid');	//
 		if($user_id != $user['uid']){	//not editing user's own profile
 			$this->load->helper('url');
