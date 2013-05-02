@@ -28,8 +28,8 @@ class Setting extends CI_Controller {
 			$this->load->helper('url');
 			#redirect('index.php/403');
 		}else{
+			$this->data['user'] = $user;			
 			$this->load->view('set_profile');
-			$this->data['user'] = $user;
 			$this->load->view('footer');
 		}
 	}
