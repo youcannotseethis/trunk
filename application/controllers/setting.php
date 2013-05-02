@@ -19,7 +19,7 @@ class Setting extends CI_Controller {
 		#if(!(isset($this->no_view)&&$this->no_view))
 		#	echo make_view($this,$data);
 	}	
-	public function profile(){
+	public function set_profile(){
 		$user = $_SESSION['user'];
 		$this->load->view('set_profile');
 		$this->load->view('footer');
