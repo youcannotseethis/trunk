@@ -45,7 +45,7 @@
                   <b class="caret"></b>
              </a>
            <ul class="dropdown-menu">
-               <li><a href="setting/edit_profile">Setting</a></li>
+               <li><a href="setting/set_profile">Setting</a></li>
                 <li><a href="logout">Log out</a></li>  
             </ul>
 
