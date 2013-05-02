@@ -45,7 +45,7 @@
                   <b class="caret"></b>
              </a>
            <ul class="dropdown-menu">
-               <li><a href="/index.php/setting/set_profile">Setting</a></li>
+               <li><a href="/index.php/setting/set_profile?uid=<?php echo $_SESSION['user']['uid']?> >Setting</a></li>
                 <li><a href="/index.php/logout">Log out</a></li>  
             </ul>
 
