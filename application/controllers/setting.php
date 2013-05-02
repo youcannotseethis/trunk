@@ -26,10 +26,10 @@ class Setting extends CI_Controller {
 		$user_id = $this->input->get('uid');	//
 		if($user_id != $user['uid']){	//not editing user's own profile
 			$this->load->helper('url');
-			redirect('index.php/403');
+			#redirect('index.php/403');
 		}else{
 			$this->load->view('set_profile');
-			$this->data['user'] = $user
+			$this->data['user'] = $user;
 			$this->load->view('footer');
 		}
 	}
