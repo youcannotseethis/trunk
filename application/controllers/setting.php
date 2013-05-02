@@ -28,13 +28,17 @@ class Setting extends CI_Controller {
 			$this->load->helper('url');
 			#redirect('index.php/403');
 		}else{
-			$this->data['user'] = $user;			
-			$this->load->view('set_profile');
+			$data['user'] = $user;			
+			$this->load->view('set_profile',$data);
 			$this->load->view('footer');
 		}
 	}
 	public function save_profile(){
-		
+		auth_route('user');
+		#dump($this->input->post());
+		$user_arr = $this->input->post();
+		$this->load->model('User');
+		$this->User->update($user_arr, $
 	}
 
 
