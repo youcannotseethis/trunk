@@ -29,7 +29,9 @@
             <div class="nav-collapse collapse">
               <ul class="nav">
                 <li class="active"><a href="">Home</a></li>
-                <li><a href="about">About</a></li>
+                <?php if($_SESSION){ ?>
+                <li><a href="about">Me</a></li>
+                <?php }?>
                 <li><a href="about2">About2</a></li>      
               </ul>  
         <ul class="nav pull-right">
@@ -39,11 +41,11 @@
           <?php } else { ?> <!-- already login -->            
             <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                  Me
+                  Account
                   <b class="caret"></b>
              </a>
            <ul class="dropdown-menu">
-               <li><a href="profile">Profile</a></li>
+               <li><a href="setting/edit_profile">Setting</a></li>
                 <li><a href="logout">Log out</a></li>  
             </ul>
 

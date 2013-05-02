@@ -20,9 +20,18 @@ class Setting extends CI_Controller {
 		#	echo make_view($this,$data);
 	}	
 	public function set_profile(){
+		auth_route('user');
 		$user = $_SESSION['user'];
-		$this->load->view('set_profile');
-		$this->load->view('footer');
+		dump($_SESSION['user']);
+		$user_id = $this->input->get('uid');	//
+		if($user_id != $user['uid']){	//not editing user's own profile
+			$this->load->helper('url');
+			redirect('index.php/403');
+		}else{
+			$this->load->view('set_profile');
+			$this->data['user'] = $user
+			$this->load->view('footer');
+		}
 	}
 	public function save_profile(){
 		
