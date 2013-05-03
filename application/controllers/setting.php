@@ -38,12 +38,19 @@ class Setting extends CI_Controller {
 	}
 	public function save_profile(){
 		auth_route('user');
-		dump($this->input->post());
+		#dump($this->input->post());
 		$user_arr = $this->input->post();
 		$this->load->model('User',false,true);
 		$this->User->update($user_arr, $this->input->post('uid'));
 		redirect('/index.php/setting/set_profile?uid='.$user_arr['uid'],'location');
 		
+	}
+	public function set_filter(){
+		auth_route('user');
+		
+	}
+	public function save_filter(){
+	
 	}
 
 
