@@ -33,7 +33,7 @@ class Setting extends CI_Controller {
 		dump($user_id);	
 	}
 	public function save_profile(){
-		#auth_route('user');
+		auth_route('user');
 		#dump($this->input->post());
 		$user_arr = $this->input->post();
 		$this->load->model('User',false,true);
