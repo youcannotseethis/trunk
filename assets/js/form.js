@@ -1,18 +1,4 @@
 
-function putCursor(inp){
-	
-	if (inp.createTextRange) { 
-		var part = inp.createTextRange();
-		part.moveStart("character", 0);
-		part.moveEnd("character", 0);
-		part.select();
-	}else if (inp.setSelectionRange){
-		inp.focus();
-		inp.setSelectionRange(0, 0);
-	}
-	//inp.selectionStart = inp.selectionEnd = inp.value.length;
-	
-}
 function validateForm2(form_name,obj,callback_success,callback_before,redirect_url,onerror_fn,abs){  
 	if(callback_success && typeof(callback_success)=='string'){
 		redirect_url = callback_success;
@@ -118,17 +104,7 @@ function jsonToError(data,form){
 		scroll_destination = jQuery('.error:first');
 	scrollTo(scroll_destination);
 }
-function jsonToErrorAbs(data,form){
-	jQuery.each(data,function(k, v){
-		var el = jQuery('[name="'+k+'"]',form);
-		var parent = el.parent();
-		var err = jQuery('<div class="bouncex_abs_error error" id="bouncex_err_'+k+'">'+v+'</div>');
-		parent.append(err);
-		var top = (parseInt(el.css('top'))+el.height())+'px';
-		err.css({'left':el.css('left'),
-																		'top':top});
-	});
-}
+
 function scrollTo(obj,onsuccess_fn){
 	var scroll_to = 0;
 	if(typeof(obj)=='object'){
@@ -208,20 +184,7 @@ function clearInputBox2(obj,default_text){
 	if(val && default_text == val){
 		obj.val('').css('color','#000');
 	}
-/*
-	if(typeof(default_val[name])=='undefined'){
-		default_val[name] = val;
-		if(default_text){
-			default_val[name] = default_text;
-		}
-	}else if(name=='password'){
-		obj.attr('type', 'password');
-	}
 
-	if(default_val[name] == val){
-		obj.val('').css('color','#000');
-	}
-*/
 }
 window.XD = function(){
 	var interval_id,
@@ -267,33 +230,7 @@ window.XD = function(){
 		 
 	};
 }();
-function show_thanks_capture(){
-	var wmode = $('.wmode');
-	var email = jQuery('input[name="email"]').val();
-	XD.postMessage('bcx_form_subitted='+email);
-	var btimeout = jQuery('#bouncex_close_timeout').val();
-	if(wmode.length){
-		wmode.hide();
-		$('.wafter').show();
-		if(btimeout && btimeout>0){
-			setTimeout(function(){
-				wmode.show();
-				$('.wafter').hide();
-				XD.postMessage('bcx_close_ad');
-			},btimeout*1000);
-		}
-	}else{
-		jQuery('.bcx_el').not('.bouncex_mid_inner_close,.bg').hide();
-		jQuery('.bcx_el.thanks').show();
-		if(btimeout && btimeout>0){
-			setTimeout(function(){
-				jQuery('.bcx_el').show();
-				jQuery('.thanks').hide();
-				XD.postMessage('bcx_close_ad');
-			},btimeout*1000);
-		}
-	}
-}
+
 function loading(obj) {
 	
 	var l = jQuery('<span class="loading"></span>');
@@ -316,39 +253,4 @@ function loading(obj) {
 		l.css('left',offset.left-side_offset);
 	}
 	l.css('top',offset.top);
-}
-
-function trackBounceFormClick(obj,submit){
-	var obj = jQuery(obj);
-	var parent = obj.parent();
-	var base_url = jQuery('#bouncex_base_url',parent).val();
-	var client_id = jQuery('#bouncex_client_id',parent).val();
-	var visitor_id = jQuery('#bouncex_visitor_id',parent).val();
-	jQuery('<img src="'+base_url+'bounce/form_submitted.jpg?client_id='+client_id+'&visitor_id='+visitor_id+'"/>');
-	if(submit){
-		
-			var old_submit = obj.attr('onsubmit');
-			if(old_submit){
-				var new_submit = old_submit.replace(new RegExp("trackBounceFormClick\\(this\\,(.+?)\\)\\;return false\\;"), '');
-				if(new_submit!=old_submit && new_submit){
-					obj.removeAttr('onsubmit');
-					onsubmit = new Function(new_submit);
-					onsubmit();
-				}else if(!new_submit){
-					obj.removeAttr('onsubmit');
-					obj.submit();
-					return;
-				}else{//trackbounce wasn't there
-				}
-			}else{
-				obj.submit();
-			}
-		
-	}
-}
-
-function submit_esp(data){
-	data = $(data).hide();
-	jQuery('body').append(data);
-	show_thanks_capture();
 }
