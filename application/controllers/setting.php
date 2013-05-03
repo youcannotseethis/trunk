@@ -22,6 +22,9 @@ class Setting extends CI_Controller {
 	public function set_profile(){
 		auth_route('user');
 		$user = $_SESSION['user'];
+		$this->load->model('User');
+		$this->User->uid = $user['uid'];
+		$user = current($this->User->get());
 		#dump($_SESSION['user']);
 		$user_id = $this->input->get('uid');	//
 		if($user_id != $user['uid']){	//not editing user's own profile
@@ -35,10 +38,12 @@ class Setting extends CI_Controller {
 	}
 	public function save_profile(){
 		auth_route('user');
-		#dump($this->input->post());
+		dump($this->input->post());
 		$user_arr = $this->input->post();
-		$this->load->model('User');
-		$this->User->update($user_arr, $
+		$this->load->model('User',false,true);
+		$this->User->update($user_arr, $this->input->post('uid'));
+		redirect('/index.php/setting/set_profile?uid='.$user_arr['uid'],'location');
+		
 	}
 
 

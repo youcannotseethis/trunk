@@ -1,5 +1,6 @@
 <form  action="/trunk/index.php/setting/save_profile" method="post" onsubmit="validateForm(this);return false;">
 	<fieldset>
+	<input type="hidden" name="uid" value="<?php echo $user['uid'];?>" />
 		<?php #dump($user);?>
 		<h1 >Edit Profile</h1>
 		
@@ -21,22 +22,22 @@
 		<div >
 			<label>Gender</label>
 			<select name="gender" >
-			  <option <?php $user['gender']=='1'?'selected="selected"':''?> value="1">Male</option>
-			  <option <?php $user['gender']=='0'?'selected="selected"':''?> value="0">Female</option>
-			  <option <?php $user['gender']=='2'?'selected="selected"':''?> value="2">Secret</option>
+			  <option <?php echo $user['gender']=='1'?'selected="selected"':'' ;?> value="1">Male</option>
+			  <option <?php echo $user['gender']=='0'?'selected="selected"':'' ;?> value="0">Female</option>
+			  <option <?php echo $user['gender']=='2'?'selected="selected"':'' ;?> value="2">Secret</option>
 			</select>
 		</div>
 		
-		<div >
-			<div >
-				<label for="description">description</label>
-				<textarea  value="<?php echo $user['description'];?>" name="description"></textarea>
-			</div>
-		</div>
+		<div>
+			<label for="description">description</label>
+			<textarea  name="description"><?php echo $user['description'];?></textarea>
+		</div>		
 		
 		<div class="">
-			<input type="submit" value="save" class="button float_right"/>
+			<input type="submit" value="save" class="button float_right" />
 		</div>
+		
+		<div id="save_hint"></div>
 		
 	</fieldset>
 </form>
