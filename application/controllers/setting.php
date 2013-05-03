@@ -21,19 +21,14 @@ class Setting extends CI_Controller {
 	}	
 	public function set_profile(){
 		auth_route('user');
-		$user = $_SESSION['user'];
-		$this->load->model('User');
-		$this->User->uid = $user['uid'];
-		$user = current($this->User->get());
-		#dump($_SESSION['user']);
-		$user_id = $this->input->get('uid');	//
-		if($user_id != $user['uid']){	//not editing user's own profile
-			$this->load->helper('url');
-			#redirect('index.php/403');
-		}else{
-			$data['user'] = $user;			
-			$this->load->view('set_profile',$data);
-			$this->load->view('footer');
+		$user_id = $this->input->post('uid');	//
+		if($user_id){
+			$this->load->model('User');
+			$this->User->uid = $user_id;
+			$user = current($this->User->get());
+			$data['user'] = $user;
+			$this->load->view('set_profile', $data);
+			$this->load->view('footer');			
 		}
 	}
 	public function save_profile(){
@@ -47,6 +42,12 @@ class Setting extends CI_Controller {
 	}
 	public function set_filter(){
 		auth_route('user');
+		$t
+		$this->load->model('User');
+		$this->User->uid = $user['uid'];
+		$user = current($this->User->get());
+		$user_id = $this->inpute->get('uid');
+		if($user
 		
 	}
 	public function save_filter(){
