@@ -34,9 +34,41 @@ class Home extends CI_Controller {
 		$this->load->model('User');
 		$this->User->uid = $user['uid'];
 		$user = current($this->User->get());
+		$data['user'] = $user;
 		#dump($user);
 		#dump($_SESSION);
-		$this->load->view('footer');
+		$this->load->view('footer',$data);
+	}
+	
+	public function note() {
+		$nid = $this->input->get('nid');
+		# get note itself
+		$this -> load -> model('Note');
+		$this -> Note -> nid = $nid;
+		$note = current($this->Note->get());
+		#dump($note);
+		$data['note']= $note;
+		# get note's auther info
+		$note_author_uid = $note['uid'];
+		$this -> load -> model('User');
+		$this -> User -> uid = $note_author_uid;
+		$note_author = current($this->User->get());
+		#dump($note_author);
+		$data['note_author']=$note_author;
+		# get place info
+		$pid = $note['pid'];
+		$this -> load -> model ('Place');
+		$this -> Place -> pid = $pid;
+		$place = current($this->Place->get());
+		#dump($place);
+		$data['place']=$place;
+		# get comment
+		$this -> load -> model('Reply');
+		$this -> Reply -> nid = $nid;
+		$reply = $this->Reply->get();
+		#dump($reply);
+		$data['reply']= $reply;
+		$this->load->view('note',$data);
 	}
 }
 ?>
