@@ -42,12 +42,18 @@ class Setting extends CI_Controller {
 	}
 	public function set_filter(){
 		auth_route('user');
-		
-		$this->load->model('User');
-		$this->User->uid = $user['uid'];
-		$user = current($this->User->get());
-		$user_id = $this->inpute->get('uid');
-		
+		$user_id = $this->inpute->post('uid');
+		if($user_id){
+			$this->load->model('User');
+			$this->User->uid = $user_id;
+			$data['user'] = current($this->User->get());
+			
+			$this->load->model('Filter');
+			$this->Filter->uid = $user_id;
+			$data['filters'] = $this->Filter->get();
+			
+			$this->load->view('set_filter', $data);	
+		}
 		
 	}
 	public function save_filter(){
