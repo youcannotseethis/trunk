@@ -1,4 +1,4 @@
-<?php dump($user); dump($filters); ?>
+<?php #dump($user); dump($filters); ?>
 <div>Hey you</div>
 
 <div>

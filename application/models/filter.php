@@ -18,7 +18,6 @@ class Filter extends CI_Model {
 		if(isset($this->uid)){
 			$where .= ' AND filter.uid = '.$this->uid;
 		}
-		
 		if(isset($this->state)){
 			$where .= ' AND filter.state = '.$this->state;
 		}
