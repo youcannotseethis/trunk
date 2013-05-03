@@ -9,7 +9,7 @@ class Filter extends CI_Model {
     
     function get($params=null){
 		$this->db->select('*');
-		$this->db->from('user');
+		$this->db->from('filter');
 		$where = ' 1=1 ';
 		
 		if(isset($this->fid)){
@@ -18,6 +18,7 @@ class Filter extends CI_Model {
 		if(isset($this->uid)){
 			$where .= ' AND filter.uid = '.$this->uid;
 		}
+		
 		if(isset($this->state)){
 			$where .= ' AND filter.state = '.$this->state;
 		}

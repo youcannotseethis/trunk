@@ -21,7 +21,7 @@ class Setting extends CI_Controller {
 	}	
 	public function set_profile(){
 		#auth_route('user');
-		$user_id = $this->input->post('uid');	
+		$user_id = $_SESSION['user']['uid'];	
 		if($user_id){
 			$this->load->model('User');
 			$this->User->uid = $user_id;
@@ -42,7 +42,7 @@ class Setting extends CI_Controller {
 	}
 	public function set_filter(){
 		auth_route('user');
-		$user_id = $this->inpute->post('uid');
+		$user_id = $_SESSION['user']['uid'];
 		if($user_id){
 			$this->load->model('User');
 			$this->User->uid = $user_id;
@@ -50,11 +50,17 @@ class Setting extends CI_Controller {
 			
 			$this->load->model('Filter');
 			$this->Filter->uid = $user_id;
-			$data['filters'] = $this->Filter->get();
-			
-			$this->load->view('set_filter', $data);	
+			$filters = $this->Filter->get();
+			if($filters){
+				foreach($filters as $k=>$filter){
+					$tags = json_decode($filter['tags'],true);
+					$filters[$k]['tags'] = $tags;
+				}
+			}
+			$data['filters'] = $filters;
 		}
-		
+		$this->load->view('set_filter', $data);	
+		#dump($data);
 	}
 	public function save_filter(){
 	

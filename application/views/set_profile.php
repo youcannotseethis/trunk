@@ -1,3 +1,6 @@
+<div>
+	<a href="/trunk/index.php/setting/set_filter">Set Filters</a>
+</div>
 <form  action="/trunk/index.php/setting/save_profile" method="post" onsubmit="validateForm(this);return false;">
 	<fieldset>
 	<input type="hidden" name="uid" value="<?php echo $user['uid'];?>" />

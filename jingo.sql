@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 03, 2013 at 11:08 AM
+-- Generation Time: May 03, 2013 at 01:28 PM
 -- Server version: 5.5.30
 -- PHP Version: 5.4.14
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `filter` (
   `fid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
   `state` varchar(64) NOT NULL,
-  `tag` varchar(64) NOT NULL,
+  `tags` varchar(64) NOT NULL,
   `s_from` datetime DEFAULT '0000-00-00 00:00:00',
   `s_to` datetime DEFAULT '0000-00-00 00:00:00',
   `repeat_flag` tinyint(1) DEFAULT '0',
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `filter` (
 -- Dumping data for table `filter`
 --
 
-INSERT INTO `filter` (`fid`, `uid`, `state`, `tag`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `dt_inserted`, `dt_edited`, `active`) VALUES
+INSERT INTO `filter` (`fid`, `uid`, `state`, `tags`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `dt_inserted`, `dt_edited`, `active`) VALUES
 (1, 1, 'traveling', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 1, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (2, 2, 'working', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (3, 3, 'lunch', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
