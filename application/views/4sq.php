@@ -2,12 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript" id="jquery"></script>
-    <link href="https://ss1.4sqi.net/styles/third_party/leaflet-811bbe17aab6403fa760a25378f6e091.css" type="text/css" rel="stylesheet" />
+	<?php 
+	echo "<link href=".BASE_URI."assets/css/leaflet.css rel='stylesheet' media='screen'>"; 
+	?>
     <link href="https://ss1.4sqi.net/styles/third_party/apisamples-0392cfe95c9fd32087ab6d80fcb80175.css" type="text/css" rel="stylesheet" />
     <script src="https://ss1.4sqi.net/scripts/apisamples-35608dc9c26343e74f5d99fc20bae6c5.js" type="text/javascript"></script>
     <script src="https://ss0.4sqi.net/scripts/third_party/jquery.ba-bbq-eddd4adf74d0c1310a401475178c57df.js" type="text/javascript"></script>
-    <script src="https://ss1.4sqi.net/scripts/third_party/leaflet-33a0ffb9d515d9e8e130778090a06816.js" type="text/javascript"></script>
+    <?php 
+    echo "<script src=".BASE_URI."assets/js/leaflet.js></script>" ;
+	?>
     <script type="text/javascript">L.Icon.Default.imagePath = '../../assets/img';</script>
     <script src="https://ss1.4sqi.net/scripts/third_party/wax.leaf.min-152e427ce5e0201f0982929193a7a53c.js" type="text/javascript"></script>
 
