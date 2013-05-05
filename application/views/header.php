@@ -52,6 +52,7 @@
             </ul>
 
           </li>  
+          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['uid'];?>" />
             <?php } ?>
         </ul>
             </div><!--/.nav-collapse -->

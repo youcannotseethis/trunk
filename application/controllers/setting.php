@@ -81,7 +81,6 @@ class Setting extends CI_Controller {
 	}
 	public function save_filter(){
 		auth_route('user');
-		$user_id = $_SESSION['user']['uid'];
 	}
 
 
