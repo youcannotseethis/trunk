@@ -1,3 +1,88 @@
+/* extra css added by xie
+.table{
+	overflow:hidden;
+}
+.table table{
+	width:100%;
+	
+}
+	.table td,.table th{
+		border-bottom: 1px dashed #aeaeae;
+		color: #5a5959;
+		font-family: arial;
+		font-size: 12px;
+		padding: 10px 10px;
+		
+	}
+	.table tr td:first-child,.table tr th:first-child{
+		padding-left:26px;
+	}
+	.table tr td:last-child,.table tr th:last-child{
+		padding-right:26px;
+	}
+	tbody.border{
+		border-bottom: 1px dashed #aeaeae;
+	}
+	.table .no_border td,.table .no_border th{
+		border:none;
+	}
+	.table tbody tr:last-child td,.table tbody:last-child{
+		border:none;
+	}
+	.table th{
+		font-weight:bold;
+		color:inherit;
+	}
+
+
+*/
+a.button,input.button{
+	cursor:pointer;
+	white-space: nowrap;
+	background-color: #FB7403;
+    border: 5px solid #D5D5D5;
+    border-radius: 78px 78px 78px 78px;
+    color: #FFFFFF;
+    padding: 10px 17px;
+	font-size:20px;
+	display:inline;
+}
+
+.button.grey{
+	background-color: #313131; 
+}
+.button.orange{
+	background-color: #FB7403; 
+}
+.button.green {
+    background-color: #5BBA47;
+}
+.button.red {
+    background-color: #C00000;
+}
+
+.big.button{
+	border: 10px solid #D5D5D5;
+	line-height: 30px;
+	padding: 28px 24px;
+	font-size: 30px;
+}
+.small.button{
+	border: 3px solid #D5D5D5;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 2px 17px;
+}
+.small.button.orange{
+	background:#FB7403;
+}
+.button:hover{
+	text-decoration:none;
+}
+
+
+
+
 /*!
  * Bootstrap Responsive v2.3.1
  *
