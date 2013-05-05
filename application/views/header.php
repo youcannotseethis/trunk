@@ -34,7 +34,7 @@
                 <?php if($_SESSION){ ?>
                 <li><a href="about">Me</a></li>
                 <?php }?>
-                <li><a href="about2">About2</a></li>      
+                <li><a href="/trunck/index.php/home/filters">Filters</a></li>      
               </ul>  
         <ul class="nav pull-right">
           <?php if (!$_SESSION) { ?> <!-- not login yet -->

@@ -43,19 +43,31 @@ class Setting extends CI_Controller {
 	public function filters(){
 		auth_route('user');
 		$user_id = $this->input->post('user_id');
-		$this->load->model('Filter');
-		$this->Filter->uid = $user_id;
-		$filters = $this->Filter->get();
+		$filters = array();
+		if($user_id){
+			$this->load->model('Filter');
+			$this->Filter->uid = $user_id;
+			$filters = $this->Filter->get();
+		}
+		if($filters){
+			foreach($filters as $k=>$filter){
+				$tags = json_decode($filter['tags'],true);
+				$filters[$k]['tags'] = $tags;
+			}
+		}
 		$data['filters'] = $filters;
 		$this->load->view('filters', $data);
 	}
 	public function filter(){
 		auth_route('user');
 		$filter_id = $this->input->get('fid');
-		$this->load->model('Filter');
-		$this->Filter->fid = $filter_id;
-		$data['filter'] = current($this->Filter->get());
-		$this->load->view('filter',$data);
+		if($filter_id){
+			$this->load->model('Filter');
+			$this->Filter->fid = $filter_id;
+			$data['filter'] = current($this->Filter->get());
+			$this->load->view('filter',$data);
+			$this->load->view('footer');
+		}
 	}
 	public function set_filter(){
 		auth_route('user');
@@ -68,12 +80,7 @@ class Setting extends CI_Controller {
 			$this->load->model('Filter');
 			$this->Filter->uid = $user_id;
 			$filters = $this->Filter->get();
-			if($filters){
-				foreach($filters as $k=>$filter){
-					$tags = json_decode($filter['tags'],true);
-					$filters[$k]['tags'] = $tags;
-				}
-			}
+			
 			$data['filters'] = $filters;
 		}
 		$this->load->view('set_filter', $data);	

@@ -6,16 +6,13 @@ class Pub extends CI_Controller {
 	}
 	public function __construct(){
 		parent::__construct();
-		session_start();
+		#session_start();
 		$this->data = array();
 		$this->title = '';
 		$this->load->view('header');
     }
 	public function __destruct(){
-		if(!$this->noView){
-			$data = $this->data;
-			$data['title'] = $this->title;
-		}
+		
 	}
 	public function attempt_login(){
 	 	ini_set ('display_errors', '1');  
