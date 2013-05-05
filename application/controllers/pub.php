@@ -6,7 +6,7 @@ class Pub extends CI_Controller {
 	}
 	public function __construct(){
 		parent::__construct();
-		#session_start();
+		session_start();
 		$this->data = array();
 		$this->title = '';
 		$this->load->view('header');

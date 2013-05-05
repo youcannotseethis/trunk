@@ -33,8 +33,8 @@
                 <li class="active"><a href="">Home</a></li>
                 <?php if($_SESSION){ ?>
                 <li><a href="about">Me</a></li>
-                <?php }?>
                 <li><a href="/trunck/index.php/home/filters">Filters</a></li>      
+                <?php }?>
               </ul>  
         <ul class="nav pull-right">
           <?php if (!$_SESSION) { ?> <!-- not login yet -->
@@ -52,7 +52,7 @@
             </ul>
 
           </li>  
-          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['uid'];?>" />
+          <input type="hidden" name="user_id" value="<?php #echo $_SESSION['user']['uid'];?>" />
             <?php } ?>
         </ul>
             </div><!--/.nav-collapse -->
