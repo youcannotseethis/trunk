@@ -32,7 +32,9 @@ class Home extends CI_Controller{
     public function foursquare(){
         #echo 'm';
         #$this->load->view('4sq.html');
-        $this->load->view('home');
+        #this->load->view('home');
+		$this->load->view('4sq');
+		$this->load->view('footer');
     }
     public function profile(){
         auth_route('user');
