@@ -16,6 +16,7 @@ class Filter extends CI_Model {
 			$where .= ' AND filter.fid = '.$this->fid;
 		}	
 		if(isset($this->uid)){
+			$this->db->join('user','user.uid = filter.uid', 'left');
 			$where .= ' AND filter.uid = '.$this->uid;
 		}
 		if(isset($this->state)){

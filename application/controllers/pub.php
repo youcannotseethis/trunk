@@ -29,6 +29,7 @@ class Pub extends CI_Controller {
 			$this->load->model('User',false,true);
 			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
 				$this->load->helper('url');
+				#echo validation_errors();
 				redirect('/index.php/home', 'location'); 
 				#exit($ref?$ref:'/trunk/index.php/home');
 			}else{
@@ -37,6 +38,7 @@ class Pub extends CI_Controller {
 		}
 	}
 	public function login(){
+	
 		$this->load->view('login');
 		$this->load->view('footer');
 	}
@@ -52,12 +54,14 @@ class Pub extends CI_Controller {
 		$this->load->view('footer');
 	}
 	public function attempt_signup(){
+		
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('uname', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required|matches[password1]');
 		$this->form_validation->set_rules('password1', 'Password Confirmation', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		if ($this->form_validation->run() == false){
+			#$this->load->view('login');
 			exit(json_encode($this->form_validation->error_array()));
 		}else{
 			$this->load->model('User');
@@ -69,7 +73,6 @@ class Pub extends CI_Controller {
 			$this->load->helper('url');
 			redirect('/index.php/home', 'location'); 
 		}
-		
 	}
 
 	
