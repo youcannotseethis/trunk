@@ -9,11 +9,11 @@
 		foreach($note as $row){
     ?>
 	<tr class="info">
-	    <td><?php echo $index;$index+=1; ?></td>
-	    <td><?php echo $row['text_body']; ?></td> <!-- TODO add link to this note -->
-	    <td>by <a href="user/uid=<?php echo $row['note_uid']?>"><?php echo $row['first_name'].' '.$row['last_name']; ?></a></td> <!-- TODO add link to this user -->
-	    <td>at <a href="place/pid=<?php echo $row['note_pid']?>"><?php echo $row['pname']; ?></a></td> <!-- TODO add link to this place -->
-		<td>when <?php echo $row['note_inserted']; ?></td> <!-- TODO add link to this place -->
+	    <td><a href="note?nid=<?php echo $row['nid'];?>"><?php echo $index;$index+=1; ?></a></td>
+	    <td><?php echo $row['text_body']." #".$row['keyword']; ?></td> <!-- TODO add link to this note -->
+	    <td>by <a href="user?uid=<?php echo $row['note_uid']?>"><?php echo $row['first_name'].' '.$row['last_name']; ?></a></td> 
+	    <td>at <a href="place?pid=<?php echo $row['note_pid']?>"><?php echo $row['pname']; ?></a></td> 
+		<td>when <?php echo $row['note_inserted']; ?></td> 
 	  </tr>
 	<?php
     }

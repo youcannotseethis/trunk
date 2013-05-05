@@ -8,12 +8,16 @@ class Note extends CI_Model {
     }
     
     function get($params=null){
-		$this->db->select('*');
+		$this->db->select('*,note.dt_inserted as note_dt_inserted');
 		$this->db->from('note');
+		$this->db->join('place','place.pid=note.pid');
 		$where = ' 1=1 ';
 		if(isset($this->nid)){
 			$where .= ' AND note.nid = '.$this->nid;
-		}	
+		}
+		if(isset($this->uid)){
+			$where .= ' AND note.uid = '.$this->uid;
+		}		
 		if($params){
 			$params['note.active']=1;
 			$this->db->where($params);	
@@ -40,7 +44,7 @@ class Note extends CI_Model {
 	}
 	
 	function getFriendRecentNote($uid){
-		$this->db->select('text_body,note.uid as note_uid,note.pid as note_pid,note.dt_inserted as note_inserted,pname,user.first_name as first_name,user.last_name as last_name');
+		$this->db->select('text_body,keyword,nid,note.uid as note_uid,note.pid as note_pid,note.dt_inserted as note_inserted,pname,user.first_name as first_name,user.last_name as last_name');
 		$this->db->from('note');
 		$this->db->join('follow', 'note.uid = follow.followed_user');
 		$this->db->join('place', 'place.pid = note.pid');
