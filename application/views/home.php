@@ -1,17 +1,19 @@
 <div style='width=75%; float:left;'>
-<h1>Notes</h1>
+<h1>Friends' Recent Notes</h1>
 <table class="table table-hover">
 	<?php 
 	# to do get notes number;
-	$note_num = 25;
-	#$index = 1;
-	for ($index = 1; $index <= $note_num; $index++) {
+	#$note_num = 25;
+	$index = 1;
+	#for ($index = 1; $index <= $note_num; $index++) {
+		foreach($note as $row){
     ?>
 	<tr class="info">
-	    <td><?php echo $index; ?></td>
-	    <td>note info</td> <!-- TODO add link to this note -->
-	    <td>by user</td> <!-- TODO add link to this user -->
-	    <td>at place</td> <!-- TODO add link to this place -->
+	    <td><?php echo $index;$index+=1; ?></td>
+	    <td><?php echo $row['text_body']; ?></td> <!-- TODO add link to this note -->
+	    <td>by <a href="user/uid=<?php echo $row['note_uid']?>"><?php echo $row['first_name'].' '.$row['last_name']; ?></a></td> <!-- TODO add link to this user -->
+	    <td>at <a href="place/pid=<?php echo $row['note_pid']?>"><?php echo $row['pname']; ?></a></td> <!-- TODO add link to this place -->
+		<td>when <?php echo $row['note_inserted']; ?></td> <!-- TODO add link to this place -->
 	  </tr>
 	<?php
     }
@@ -20,7 +22,7 @@
 </table>
 </div>
 <div style='width=25%; float:right;'>
-	<h1>self info</h1>
+	<h1><?php echo $_SESSION['user']['first_name']." ".$_SESSION['user']['last_name'];?></h1>
 	
 	<div>
 	<?php	

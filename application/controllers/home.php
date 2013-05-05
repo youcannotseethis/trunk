@@ -3,6 +3,12 @@
 class Home extends CI_Controller {
 	public function index(){
 		auth_route('user');
+		$user = $_SESSION['user'];
+		$this->load->model('Note');
+		$note = $this->Note->getFriendRecentNote($user['uid']);
+		$data['note']=$note;
+		$this->load->view('home',$data);
+		$this->load->view('footer');
 	}
 	
  	public function __construct(){
