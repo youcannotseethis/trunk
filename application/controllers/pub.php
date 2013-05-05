@@ -39,7 +39,6 @@ class Pub extends CI_Controller {
 	public function login(){
 		$this->load->view('login');
 		$this->load->view('footer');
-	
 	}
 	public function logout(){
 		unset($_SESSION);
