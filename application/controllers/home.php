@@ -105,37 +105,45 @@ class Home extends CI_Controller{
         $this->load->view('footer');
     }
     
-    public function filters(){
-        auth_route('user');
-        $user    = $_SESSION['user'];
-        $filters = array();
-        if ($user) {
-            $this->load->model('Filter');
-            $this->Filter->uid = $user['uid'];
-            $filters           = $this->Filter->get();
-        }
-        if ($filters) {
-            foreach ($filters as $k => $filter) {
-                $tags = json_decode($filter['tags'], true);
-                #$filters[$k]['tags'] = $tags;
-            }
-        }
-        $data['filters'] = $filters;
-        $data['user']    = $user;
-        #dump($filters);
-        $this->load->view('filters', $data);
-    }
+  	public function filters(){
+		auth_route('user');
+		$user = $_SESSION['user'];
+		$filters = array();
+		if($user){
+			$this->load->model('Filter');
+			$this->Filter->uid = $user['uid'];
+			$filters = $this->Filter->get();
+		}
+		if($filters){
+			foreach($filters as $k=>$filter){
+				$tags = json_decode($filter['tags'],true);
+				#$filters[$k]['tags'] = $tags;
+			}
+		}
+		$data['filters'] = $filters;
+		$data['user'] = $user;
+		#dump($filters);
+		$this->load->view('filters', $data);
+	}
+	
+	public function filter(){
+		auth_route('user');
+		$data = array();
+		$filter_id = $this->input->get('fid');
+		if($filter_id){
+			$this->load->model('Filter');
+			$this->Filter->fid = $filter_id;
+			$data['filter'] = current($this->Filter->get());
+		}
+		$this->load->view('filter',$data);
+		$this->load->view('footer');
+	}
+	public function save_filter(){
+		auth_route('user');
+		$user = $_SESSION['user'];
+		$this->load->library('form_validation');
+		#$this->form_validation->set_rules();
+	}
     
-    public function filter(){
-        auth_route('user');
-        $filter_id = $this->input->get('fid');
-        if ($filter_id) {
-            $this->load->model('Filter');
-            $this->Filter->fid = $filter_id;
-            $data['filter']    = current($this->Filter->get());
-            $this->load->view('filter', $data);
-            $this->load->view('footer');
-        }
-    }
 }
 ?>

@@ -36,49 +36,6 @@
 
 
 */
-a.button,input.button{
-	cursor:pointer;
-	white-space: nowrap;
-	background-color: #FB7403;
-    border: 5px solid #D5D5D5;
-    border-radius: 78px 78px 78px 78px;
-    color: #FFFFFF;
-    padding: 10px 17px;
-	font-size:20px;
-	display:inline;
-}
-
-.button.grey{
-	background-color: #313131; 
-}
-.button.orange{
-	background-color: #FB7403; 
-}
-.button.green {
-    background-color: #5BBA47;
-}
-.button.red {
-    background-color: #C00000;
-}
-
-.big.button{
-	border: 10px solid #D5D5D5;
-	line-height: 30px;
-	padding: 28px 24px;
-	font-size: 30px;
-}
-.small.button{
-	border: 3px solid #D5D5D5;
-    font-size: 14px;
-    line-height: 14px;
-    padding: 2px 17px;
-}
-.small.button.orange{
-	background:#FB7403;
-}
-.button:hover{
-	text-decoration:none;
-}
 
 
 
