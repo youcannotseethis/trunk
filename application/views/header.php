@@ -12,8 +12,8 @@
  ?>
   </head>
   <body>
-    <script src="http://code.jquery.com/jquery.js"></script>
     <?php 
+	echo "<script src=".BASE_URI."assets/js/jquery.min.js></script>" ;
     echo "<script src=".BASE_URI."assets/js/bootstrap.js></script>" ;
    # echo "<script src=".BASE_URI."assets/js/form.js></script>" ;
   #  echo "<script src=".BASE_URI."assets/js/global.js></script>" 
