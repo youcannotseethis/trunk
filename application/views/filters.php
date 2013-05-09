@@ -12,7 +12,7 @@
 		<th>Repeate</th>
 <?php  foreach($filters as $filter){?>
 			<tr class="">
-				<td><a href="/trunk/index.php/home/filter?fid=<?php echo $filter['fid'];?>" > <?php echo $filter['fid'];?></a></td>
+				<td><a href="/trunk/index.php/filter?fid=<?php echo $filter['fid'];?>" > <?php echo $filter['fid'];?></a></td>
 				<td><?php echo $filter['state'];?></td>
 				<td><?php echo $filter['tags'];?><td>
 			</tr>
