@@ -7,23 +7,6 @@
 		<label>State</label>
 		<input type="text" name="state" value="<?php echo $filter['state'];?>" />
 	</div>
-	<table>
-		<tbody>
-		<th>#</th>
-		<th>Tag</th>
-		<?php //foreach($tags as $k=>$tag){?>
-			<tr>
-				<td>1</td>
-				<td><input class="tag" type="text" name="tags[]" value="food" ></td>
-			</tr>
-		<?php// }?>
-			<tr class="none empty_tag">
-				<td>1</td>
-				<td><input class="tag" type="text" value="" /></td>
-			</tr>	
-		</tbody>
-	</table>
-	<div class="btn btn-primary" onclick="addNewTag()">Add New Tag</div>
 
 </fieldset>
 <br>
@@ -37,13 +20,13 @@
 			</span>
 		</div>
 		<label class="control-label" for="endtime" style="float: left;   margin-right: 10px;">End Time</label>
-		<div id="datetimepicker2" class="input-append date">
+		<div id="datetimepicker2" class="input-append date" style="float:left; margin-right:10px">
 			<input data-format="yyyy-MM-dd hh:mm:ss" name="s_to" type="text" id="s_to" value="<?php echo $filter['s_to'];?>" >
 			<span class="add-on">
 				<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 			</span>
 		</div>
-	</div>
+	
 	
 	<div class="control-group" style="float:left; width:25%">
     	<label class="control-label" for="inputRepeat">Repeat</label>
@@ -53,6 +36,7 @@
 				<option <?php if($filter['repeat_flag']=='0'){echo "selected";}?> value="0" onclick="">No</option>
 			</select>    	
 		</div>
+	</div>
 	</div>
 		<div id="week_days" class="<?php if($filter['repeat_flag']=='0') {echo 'none';}?> " style="float:left; width:25%">
 		    	<label class="control-label" for="">Days</label>
@@ -79,7 +63,27 @@
 				</label>
 			</div>
 </fieldset>
-
+	<table class="table">
+		<tbody>
+		<th>#</th>
+		<th>Tag</th>
+		<th>Delete</th>
+		<?php //foreach($tags as $k=>$tag){?>
+			<tr>
+				<td class="row_count" style="width:20%">1</td>
+				<td><input class="tag" type="text" name="tags[]" value="food" ></td>
+				<td><div class="btn btn-danger" onclick="deleteTag(this)">Delete</div></td>
+			</tr>
+		<?php// }?>
+			<tr class="none empty_tag">
+				<td class="row_count" style="width:20%">1</td>
+				<td><input class="tag" type="text" name="tags[]" value="" /></td>
+				<td><div class="btn btn-danger" onclick="deleteTag(this)">Delete</div></td>
+			</tr>	
+		</tbody>
+	</table>
+	<div class="btn btn-success" onclick="addNewTag()">Add New Tag</div>
+	<br></br><br>
 	<div style="float:none; width:25%">
 		<button type="submit" class="btn btn-primary">Save</button>
 	</div>
@@ -95,7 +99,11 @@ function show_week_days(obj){
 }
 function addNewTag(){
 	var item = $('table').find('.empty_tag').clone().removeClass('none empty_tag');
-	item.find('
+	item.find('.row_count').text($('.table tr').length-1);
+	item.insertBefore('.empty_tag');
+}
+function deleteTag(obj){
+	$(obj).parent().parent().remove();
 }
 </script>
 <script type="text/javascript">
