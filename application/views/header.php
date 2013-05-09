@@ -32,8 +32,8 @@
               <ul class="nav">
                 <li class="active"><a href="">Home</a></li>
                 <?php if($_SESSION){ ?>
-                <li><a href="about">Me</a></li>
-                <li><a href="/trunk/index.php/home/filters">Filters</a></li>      
+                <li><a href="/trunk/index.php/user">Profile</a></li>
+                <li><a href="/trunk/index.php/filters">Filters</a></li>      
                 <?php }?>
               </ul>  
         <ul class="nav pull-right">

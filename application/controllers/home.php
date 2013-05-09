@@ -158,8 +158,9 @@ class Home extends CI_Controller{
 							'monday'=>$post['monday'],'tuesday'=>$post['tuesday'],'wednesday'=>$post['wednesday'],
 							'thursday'=>$post['thursday'],'friday'=>$post['friday'],'saturday'=>$post['saturday']);
 			$this->Filter->update($filter,$post['fid']);
+			redirect('/trunk/index.php/filter?id='.$post['fid'],'location');
 		}else{
-			exit('wrong');
+			exit('something went wrong');
 		}
 	}
     

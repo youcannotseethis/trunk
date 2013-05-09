@@ -2,7 +2,7 @@
 <?php #dump($fiters);
 ?>
 
-<table class="table table_hove">
+<table class="table table_hover">
 	<tbody>
 <?php if($filters){?>
 		<caption><h1>Filters of <?php echo $user['uname'];?></h1></caption>
@@ -11,7 +11,7 @@
 		<th>Tags</th>
 		<th>Repeate</th>
 <?php  foreach($filters as $filter){?>
-			<tr class="info">
+			<tr class="">
 				<td><a href="/trunk/index.php/home/filter?fid=<?php echo $filter['fid'];?>" > <?php echo $filter['fid'];?></a></td>
 				<td><?php echo $filter['state'];?></td>
 				<td><?php echo $filter['tags'];?><td>
