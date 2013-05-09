@@ -43,6 +43,8 @@ $route['404_override'] = '';
 $route['logout'] = "pub/logout";
 $route['login'] = "pub/login";
 $route['signup'] = "pub/signup";
+$route['filters'] = "home/filters";
+$route['user'] = "home/user";
 
 
 

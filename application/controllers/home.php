@@ -130,21 +130,37 @@ class Home extends CI_Controller{
 	
 	public function filter(){
 		auth_route('user');
-		$data = array();
 		$filter_id = $this->input->get('fid');
+		$filter = array();
+		$tags = '{}';
 		if($filter_id){
 			$this->load->model('Filter');
 			$this->Filter->fid = $filter_id;
-			$data['filter'] = current($this->Filter->get());
+			$filter = current($this->Filter->get());
+			$tags = $filter['tags'];
 		}
+		$data['tags'] = json_decode($tags, true);
+		$data['filter'] = $filter;
 		$this->load->view('filter',$data);
 		$this->load->view('footer');
 	}
 	public function save_filter(){
 		auth_route('user');
-		$user = $_SESSION['user'];
-		$this->load->library('form_validation');
+		$post = $this->input->post();
+		$user_id = $post['user_id'];
+		#$this->load->library('form_validation');
 		#$this->form_validation->set_rules();
+		if($post['fid']){
+			$this->load->model('Filter');
+			$tags = json_encode($post['tags']);
+			$filter = array('state'=>$post['state'],'tags'=>$tags, 'uid'=>$user_id,'s_from'=>$post['s_from'],
+							's_to'=>$post['s_to'],'repeate_flag'=>$post['repeate_flag'],'sunday'=>$post['sunday'],
+							'monday'=>$post['monday'],'tuesday'=>$post['tuesday'],'wednesday'=>$post['wednesday'],
+							'thursday'=>$post['thursday'],'friday'=>$post['friday'],'saturday'=>$post['saturday']);
+			$this->Filter->update($filter,$post['fid']);
+		}else{
+			exit('wrong');
+		}
 	}
     
 }
