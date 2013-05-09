@@ -180,5 +180,38 @@ class Home extends CI_Controller{
 		$this->load->view('place',$data);
 		$this->load->view('footer');
 	}
+	
+	public function add_note(){
+		#$this->load->helper('form');
+		#dump($_GET());
+		dump($this->input->post());
+	 	ini_set ('display_errors', '1');  
+		$this->load->library('form_validation');
+		$this->form_validation->run();
+		#$this->form_validation->set_rules('name', 'Username', 'required');
+		#$this->form_validation->set_rules('password', 'Password', 'required');
+		echo $this->input->post('pid');
+		$this->load->view('place');
+		$this->load->view('footer');
+		/*
+		$ref = $this->input->post('referral');
+		if ($this->form_validation->run() == false){
+			#redirect('/index.php/home', 'location');
+		}else{
+			$this->load->model('User',false,true);
+			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
+				$this->load->helper('url');
+				#echo validation_errors();
+				redirect('/index.php/home', 'location'); 
+				#exit($ref?$ref:'/trunk/index.php/home');
+			}
+			/*else{
+				exit(json_encode(array('name'=>'Bad credentials')));
+			}*/
+		/*
+		}
+		*/
+		redirect('/index.php/home'); 
+	}
 }
 ?>
