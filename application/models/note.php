@@ -10,6 +10,7 @@ class Note extends CI_Model {
     function get($params=null){
 		$this->db->select('*,note.dt_inserted as note_dt_inserted');
 		$this->db->from('note');
+		$this->db->join('user','user.uid=note.uid');
 		$this->db->join('place','place.pid=note.pid');
 		$where = ' 1=1 ';
 		if(isset($this->nid)){
@@ -17,6 +18,9 @@ class Note extends CI_Model {
 		}
 		if(isset($this->uid)){
 			$where .= ' AND note.uid = '.$this->uid;
+		}
+		if(isset($this->pid)){
+			$where .= ' AND note.pid = '.$this->pid;
 		}		
 		if($params){
 			$params['note.active']=1;

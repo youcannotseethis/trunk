@@ -163,5 +163,21 @@ class Home extends CI_Controller{
 		}
 	}
     
+	public function place(){
+		auth_route('user');
+		$pid = $this->input->get('pid');
+		$this->load ->model('Place');
+		$this->Place->pid = $pid;
+		$place = current($this->Place->get());
+		$data['place']=$place;
+		if($place){
+			$this->load->model('Note');
+			$this->Note->pid = $pid;
+			$note = $this->Note->get();
+			$data['note']=$note;
+		} 
+		$this->load->view('place',$data);
+		$this->load->view('footer');
+	}
 }
 ?>
