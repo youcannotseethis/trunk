@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 03, 2013 at 01:28 PM
+-- Generation Time: May 09, 2013 at 11:13 AM
 -- Server version: 5.5.30
 -- PHP Version: 5.4.14
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `filter` (
   `fid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
   `state` varchar(64) NOT NULL,
-  `tags` varchar(64) NOT NULL,
+  `tag` varchar(64) NOT NULL,
   `s_from` datetime DEFAULT '0000-00-00 00:00:00',
   `s_to` datetime DEFAULT '0000-00-00 00:00:00',
   `repeat_flag` tinyint(1) DEFAULT '0',
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `filter` (
 -- Dumping data for table `filter`
 --
 
-INSERT INTO `filter` (`fid`, `uid`, `state`, `tags`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `dt_inserted`, `dt_edited`, `active`) VALUES
+INSERT INTO `filter` (`fid`, `uid`, `state`, `tag`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `dt_inserted`, `dt_edited`, `active`) VALUES
 (1, 1, 'traveling', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 1, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (2, 2, 'working', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (3, 3, 'lunch', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
@@ -174,12 +174,12 @@ CREATE TABLE IF NOT EXISTS `place` (
 --
 
 INSERT INTO `place` (`pid`, `pname`, `latitude`, `longitude`, `dt_inserted`, `dt_edited`, `active`) VALUES
-(1, 'Sala Bar', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(2, 'McDonalds', 2, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(3, 'Shake Shack', 3, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(4, 'Banned', 4, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(5, 'Nail', 5, 5, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(6, 'Orens Daily Roast', 6, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
+(1, 'Sala Bar', 40.1, -75.2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(2, 'McDonalds', 40.2, -75.1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(3, 'Shake Shack', 40.3, -75.3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(4, 'Banned', 40.4, -75.5, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(5, 'Nail', 40.5, -75.4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(6, 'Orens Daily Roast', 40.6, -75.6, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
