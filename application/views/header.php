@@ -39,7 +39,7 @@
 					?>
 					">Profile</a></li>
                 <li><a href="/trunk/index.php/filters">Filters</a></li>      
-                <?php }?>
+                <?php } ?>
               </ul>  
         <ul class="nav pull-right">
           <?php if (!$_SESSION) { ?> <!-- not login yet -->
@@ -57,14 +57,14 @@
             </ul>
 
 
-          </li>  
-          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['uid'];?>" />
-            <?php } ?>
-        </ul>
-            </div><!--/.nav-collapse -->
-          </div>
-        </div>
-      </div>
-    
-  <div class="container"> 
-    <!-- insert our page here -->
+          </li>  
+          <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['uid'];?>" />
+            <?php } ?>
+        </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+    
+  <div class="container"> 
+    <!-- insert our page here -->
