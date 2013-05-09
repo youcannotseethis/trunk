@@ -8,7 +8,7 @@
   define('BASE_URI', str_replace('index.php', '', $_SERVER['SCRIPT_NAME'])); 
   echo "<link href=".BASE_URI."assets/css/bootstrap.css rel='stylesheet' media='screen'>";
   echo "<link href=".BASE_URI."assets/css/bootstrap-responsive.css rel='stylesheet' media='screen'>"; 
- # echo "<link href=".BASE_URI."assets/css/global.css rel='stylesheet' media='screen'>"; 
+  echo "<link href=".BASE_URI."assets/css/timepicker.css rel='stylesheet' media='screen'>"; 
  ?>
   </head>
   <body>
@@ -16,7 +16,7 @@
 	echo "<script src=".BASE_URI."assets/js/jquery.min.js></script>" ;
     echo "<script src=".BASE_URI."assets/js/bootstrap.js></script>" ;
    # echo "<script src=".BASE_URI."assets/js/form.js></script>" ;
-  #  echo "<script src=".BASE_URI."assets/js/global.js></script>" 
+    echo "<script src=".BASE_URI."assets/js/timepicker.js></script>" 
     ?>    
   <div id="wrap">
   <div class="navbar navbar-inverse navbar-fixed-top">
