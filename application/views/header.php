@@ -32,7 +32,11 @@
               <ul class="nav">
                 <li class="active"><a href="">Home</a></li>
                 <?php if($_SESSION){ ?>
-                <li><a href="/trunk/index.php/user">Profile</a></li>
+                <li><a href="/trunk/index.php/user?uid=
+					<?php
+					echo  $_SESSION['user']['uid'];
+					?>
+					">Profile</a></li>
                 <li><a href="/trunk/index.php/filters">Filters</a></li>      
                 <?php }?>
               </ul>  
