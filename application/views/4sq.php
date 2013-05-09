@@ -107,7 +107,38 @@
     <div id="map" style="width: 550px; height: 550px; position: absolute;"></div>
     <div id="content" style="margin-left: 610px">
       <h1>What's hot right now?</h1>
-      Hover over the markers in an area to see what's trending.
+	  <?php
+	  $json = file_get_contents("https://api.foursquare.com/v2/venues/search?ll=40.729515,-73.997188&oauth_token=0BF1V2B3JOLPJXSTFVRBRXHNEJ5LTIXBXYX3OSJ5PW5DLXEN&v=20130509");
+	  $result = json_decode($json, true);
+	  #dump($result);
+	  if ($result['meta']['code']==200 ) {
+		  ?>
+		  <table class="table table-hover">
+		  	<?php 
+		  	# to do get notes number;
+		  	#$note_num = 25;
+		  	$index = 1;
+			$datetime = time();
+		  	#for ($index = 1; $index <= $note_num; $index++) {
+		  		foreach ($result['response']['venues'] as $p){
+		    ?>
+		  	<tr class="info">
+				<td><?php echo $index; $index+=1;?></td>
+		  	    <td><?php echo $p['name'];?></td>
+		  	    <td><?php echo $p['location']['lat'];?></td>
+				<td><?php echo $p['location']['lng'];?></td>
+				<td><?php echo $p['id'];?></td>
+				<td><?php echo date("Y-m-d H:i:s", $datetime); ?></td>
+		  	  </tr>
+		  	<?php
+		      }
+		  	?>
+    
+		  </table>
+		<?php  
+	  }
+	  ?>
+      <br/>Hover over the markers in an area to see what's trending.
     </div>
 </body>
 </html>  
