@@ -204,7 +204,7 @@ class Home extends CI_Controller{
 		   'friday'=> $this->input->post('friday'), 
 		   'saturday'=> $this->input->post('saturday')
 		);
-		$nid = $this->Note->insert('note', $data); 
+		$this->db->insert('note', $data); 
 		$newURL ='/index.php/home/place?pid='.$this->input->post('pid');
 		$this->load->helper('url');
 		redirect($newURL,'location');
