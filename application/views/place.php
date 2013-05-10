@@ -51,6 +51,22 @@
                <b>Note:  </b><input type="text" name="text_body" placeholder="About this place…"><br/>
                <b>Tag :  </b><input type="text" name="keyword" placeholder="food, coffee, or some keyword…">
                <label>About Filter</label>
+			   <div class="well">
+   			<label class="control-label" for="starttime">Start Time</label>
+   			<div id="datetimepicker1" class="input-append date" >
+   				<input data-format="yyyy-MM-dd hh:mm:ss" name="s_from" type="text" id="s_from" >
+   				<span class="add-on">
+   					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+   				</span>
+   			</div>
+   			<label class="control-label" for="endtime" >End Time</label>
+   			<div id="datetimepicker2" class="input-append date" >
+   				<input data-format="yyyy-MM-dd hh:mm:ss" name="s_to" type="text" id="s_to" >
+   				<span class="add-on">
+   					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+   				</span>
+   			</div>
+		</div>
 			   <?php # todo datepick and timepick ?>
                <label class="checkbox">
                      <input type="checkbox" value="1" id="repeatFlag" name="repeat_flag"> Repeat?
@@ -111,6 +127,16 @@
 	$("#cancelBtn").click(function(){
 		$("#insert_form").hide("fast");
 	});
+    $(function() {
+      $('#datetimepicker1').datetimepicker({
+        language: 'pt-BR'
+      });
+    });
+    $(function() {
+      $('#datetimepicker2').datetimepicker({
+        language: 'pt-BR'
+      });
+    });
     </script>
 </body>
 </html>  
