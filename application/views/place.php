@@ -46,28 +46,31 @@
            <form action="<?php echo BASE_URI.'index.php/home/add_note'; ?>" method="post" onsubmit="validateForm(this);return false;">
              <fieldset>
                <br/>
-			   <input type="hidden" name = "pid" value = "<?php echo $_GET['pid']?>">
-               <b>Note:  </b><input type="text" placeholder="About this place…"><br/>
-               <b>Tag :  </b><input type="text" placeholder="food, coffee, or some keyword…">
+			   <input type="hidden" name = "pid" value = "<?php echo $_GET['pid']; ?>">
+			   <input type="hidden" name = "uid" value = "<?php echo $_SESSION['user']['uid']; ?>">
+               <b>Note:  </b><input type="text" name="text_body" placeholder="About this place…"><br/>
+               <b>Tag :  </b><input type="text" name="keyword" placeholder="food, coffee, or some keyword…">
                <label>About Filter</label>
 			   <?php # todo datepick and timepick ?>
                <label class="checkbox">
-                     <input type="checkbox" id="repeatFlag" name="repeatFlag"> Repeat?
+                     <input type="checkbox" value="1" id="repeatFlag" name="repeat_flag"> Repeat?
                 </label>
                 <label class="checkbox" id="repeatWeekDay" style="display:none;">
-                     <input type="checkbox" id="repeatSunday" name="repeatSunday"> Every Sunday?<br/> 
-                     <input type="checkbox" id="repeatMonday" name="repeatMonday"> Every Monday?<br/> 
-                     <input type="checkbox" id="repeatTuesday" name="repeatMonday"> Every Tuesday?<br/> 
-                     <input type="checkbox" id="repeatWendesday" name="repeatWendesday"> Every Wendesday?<br/> 
-                     <input type="checkbox" id="repeatThursday" name="repeatThursday"> Every Thursday?<br/> 
-                     <input type="checkbox" id="repeatFirday" name="repeatFirday"> Every Friday?<br/> 
-                     <input type="checkbox" id="repeatSaturday" name="repeatSaturday"> Every Saturday?<br/> 
+                     <input type="checkbox" value="1"  name="sunday"> Every Sunday?<br/> 
+                     <input type="checkbox" value="1"  name="monday"> Every Monday?<br/> 
+                     <input type="checkbox" value="1"  name="tuesday"> Every Tuesday?<br/> 
+                     <input type="checkbox" value="1"  name="wednesday"> Every Wendesday?<br/> 
+                     <input type="checkbox" value="1"  name="thursday"> Every Thursday?<br/> 
+                     <input type="checkbox" value="1"  name="friday"> Every Friday?<br/> 
+                     <input type="checkbox" value="1"  name="saturday"> Every Saturday?<br/> 
                  </label>
                <span class="help-block">Example block-level help text here.</span>
                <button type="submit" class="btn">Submit</button>
-			   <button type="cancel" class="btn btn-inverse" id="cancelBtn">Cancel</button>
+			   <button type="reset" class="btn btn-inverse" id="cancelBtn">Cancel</button>   
              </fieldset>
-           </form>       
+			     
+           </form>
+		   
        </div>
       <br/>
       <?php if (count($note)>0) {?>

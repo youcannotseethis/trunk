@@ -185,36 +185,32 @@ class Home extends CI_Controller{
 	}
 	
 	public function add_note(){
-		#$this->load->helper('form');
-		#dump($_GET());
 		dump($this->input->post());
-	 	ini_set ('display_errors', '1');  
-		$this->load->library('form_validation');
-		$this->form_validation->run();
-		#$this->form_validation->set_rules('name', 'Username', 'required');
-		#$this->form_validation->set_rules('password', 'Password', 'required');
-		echo $this->input->post('pid');
-		$this->load->view('place');
-		$this->load->view('footer');
-		/*
-		$ref = $this->input->post('referral');
-		if ($this->form_validation->run() == false){
-			#redirect('/index.php/home', 'location');
-		}else{
-			$this->load->model('User',false,true);
-			if($this->User->login($this->input->post('name'),$this->input->post('password'))){
-				$this->load->helper('url');
-				#echo validation_errors();
-				redirect('/index.php/home', 'location'); 
-				#exit($ref?$ref:'/trunk/index.php/home');
-			}
-			/*else{
-				exit(json_encode(array('name'=>'Bad credentials')));
-			}*/
-		/*
-		}
-		*/
-		redirect('/index.php/home'); 
+		$this->load->model('Note');
+		$data = array(
+		   'nid' => 'default' , 
+		   'uid' => $this->input->post('uid') , 
+		   'pid' => $this->input->post('pid') , 
+		   'text_body' => $this->input->post('text_body') , 
+		   'keyword' => $this->input->post('keyword') , 
+		   #'dt_inserted', 
+		   #'dt_edited', 
+		   'active' => 1, 
+		   's_from' => $this->input->post('s_from') , 
+		   's_to' => $this->input->post('s_to'), 
+		   'repeat_flag' => $this->input->post('repeat_flag'), 
+		   'sunday' => $this->input->post('sunday'), 
+		   'monday'=> $this->input->post('monday'), 
+		   'tuesday' => $this->input->post('tuesday'),
+		   'wednesday'=> $this->input->post('wednesday'), 
+		   'thursday'=> $this->input->post('thursday'), 
+		   'friday'=> $this->input->post('friday'), 
+		   'saturday'=> $this->input->post('saturday')
+		);
+		$this->db->insert('note', $data); 
+		$newURL ='/index.php/home/place?pid='.$this->input->post('pid');
+		$this->load->helper('url');
+		redirect($newURL,'location');
 	}
 }
 ?>
