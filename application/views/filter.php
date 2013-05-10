@@ -74,8 +74,8 @@
 			<th>Delete</th>
 			<?php if($tags){foreach($tags as $k=>$tag){?>
 				<tr>
-					<td class="row_count" style="width:20%">1</td>
-					<td><input class="tag" type="text" name="tags[]" value="food" ></td>
+					<td class="row_count" style="width:20%"><?php echo $k+1;?></td>
+					<td><input class="tag" type="text" name="tags[]" value="<?php echo $tag;?>" ></td>
 					<td><div class="btn btn-danger" onclick="deleteTag(this)">Delete</div></td>
 				</tr>
 			<?php }}?>
