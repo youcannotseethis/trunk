@@ -188,14 +188,11 @@ class Home extends CI_Controller{
 		dump($this->input->post());
 		$this->load->model('Note');
 		$data = array(
-		   'nid' => 'default' , 
 		   'uid' => $this->input->post('uid') , 
 		   'pid' => $this->input->post('pid') , 
 		   'text_body' => $this->input->post('text_body') , 
 		   'keyword' => $this->input->post('keyword') , 
-		   #'dt_inserted', 
-		   #'dt_edited', 
-		   'active' => 1, 
+
 		   's_from' => $this->input->post('s_from') , 
 		   's_to' => $this->input->post('s_to'), 
 		   'repeat_flag' => $this->input->post('repeat_flag'), 
@@ -207,7 +204,7 @@ class Home extends CI_Controller{
 		   'friday'=> $this->input->post('friday'), 
 		   'saturday'=> $this->input->post('saturday')
 		);
-		$this->db->insert('note', $data); 
+		$nid = $this->Note->insert('note', $data); 
 		$newURL ='/index.php/home/place?pid='.$this->input->post('pid');
 		$this->load->helper('url');
 		redirect($newURL,'location');
