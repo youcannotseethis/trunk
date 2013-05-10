@@ -1,7 +1,8 @@
 <a class="btn btn-info" href="/trunk/index.php/filters">Back to Filters</a>
-
 <h1>Set Filter</h1>
 <form id="filter" action="/trunk/index.php/home/save_filter" method="post">
+<input type="hidden" name="filter_id" value="<?php echo $filter['fid'];?>" />
+<input type="hidden" name="user_id" value="<?php echo $filter['uid'];?>" />
 <div>
 <br>
 	<fieldset>	
@@ -43,25 +44,25 @@
 			<div id="week_days" class="<?php if($filter['repeat_flag']=='0') {echo 'none';}?> " style="float:left; width:25%">
 					<label class="control-label" for="">Days</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="monday" <?php $filter['monday']? 'checked="checked"':''?> >Monday
+						<input type="checkbox" value="1" name="monday" <?php if($filter['monday']) echo 'checked="checked"'; ?> >Monday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="tuesday" <?php $filter['tuesday']? 'checked="checked"':''?>>Tuesday
+						<input type="checkbox" value="1" name="tuesday" <?php if($filter['tuesday']) echo 'checked="checked"'; ?>>Tuesday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="wednesday" <?php $filter['wednesday']? 'checked="checked"':''?>>Wednesday
+						<input type="checkbox" value="1" name="wednesday" <?php if($filter['wednesday']) echo 'checked="checked"'; ?>>Wednesday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="thursday" <?php $filter['thursday']? 'checked="checked"':''?>>Thursday
+						<input type="checkbox" value="1" name="thursday" <?php if($filter['thursday']) echo 'checked="checked"'; ?>>Thursday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="friday" <?php $filter['friday']? 'checked="checked"':''?>>Friday
+						<input type="checkbox" value="1" name="friday" <?php if($filter['friday']) echo 'checked="checked"'; ?>>Friday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="saturday" <?php $filter['saturday']? 'checked="checked"':''?>>Saturday
+						<input type="checkbox" value="1" name="saturday" <?php if($filter['saturday']) echo 'checked="checked"'; ?>>Saturday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="sunday" <?php $filter['sunday']? 'checked="checked"':''?>>Sunday
+						<input type="checkbox" value="1" name="sunday" <?php if($filter['sunday']) echo 'checked="checked"'; ?>>Sunday
 					</label>
 				</div>
 	</fieldset>
@@ -71,16 +72,16 @@
 			<th>#</th>
 			<th>Tag</th>
 			<th>Delete</th>
-			<?php //foreach($tags as $k=>$tag){?>
+			<?php if($tags){foreach($tags as $k=>$tag){?>
 				<tr>
 					<td class="row_count" style="width:20%">1</td>
 					<td><input class="tag" type="text" name="tags[]" value="food" ></td>
 					<td><div class="btn btn-danger" onclick="deleteTag(this)">Delete</div></td>
 				</tr>
-			<?php// }?>
+			<?php }}?>
 				<tr class="none empty_tag">
 					<td class="row_count" style="width:20%">1</td>
-					<td><input class="tag" type="text" name="tags[]" value="" /></td>
+					<td><input class="tag" type="text"  value="" /></td>
 					<td><div class="btn btn-danger" onclick="deleteTag(this)">Delete</div></td>
 				</tr>	
 			</tbody>
@@ -104,6 +105,7 @@ function show_week_days(obj){
 function addNewTag(){
 	var item = $('table').find('.empty_tag').clone().removeClass('none empty_tag');
 	item.find('.row_count').text($('.table tr').length-1);
+	$('input',item).attr('name','tags[]');
 	item.insertBefore('.empty_tag');
 }
 function deleteTag(obj){
