@@ -47,10 +47,12 @@ class Pub extends CI_Controller {
 	public function signup(){
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('uname', 'Username', 'required');
+		$this->form_validation->set_rules('uname', 'Username', 'required|unique');
 		$this->form_validation->set_rules('password', 'Password', 'required|matches[password1]');
 		$this->form_validation->set_rules('password1', 'Password Confirmation', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('first_name','First Name','required');
+		$this->form_validation->set_rules('last_name','Last Name', 'required');
 		if ($this->form_validation->run() == false){
 			$this->load->view('signup.php');
 		}else{
