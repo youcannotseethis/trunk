@@ -1,3 +1,5 @@
+<a class="btn btn-info" href="/trunk/index.php/filter" >Create Filter</a>
+<br>
 <div id="filters" class="table">
 <?php #dump($fiters);
 ?>

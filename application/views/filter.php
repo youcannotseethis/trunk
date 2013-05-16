@@ -1,14 +1,14 @@
 <a class="btn btn-info" href="/trunk/index.php/filters">Back to Filters</a>
 <h1>Set Filter</h1>
 <form id="filter" action="/trunk/index.php/home/save_filter" method="post">
-<input type="hidden" name="filter_id" value="<?php echo $filter['fid'];?>" />
-<input type="hidden" name="user_id" value="<?php echo $filter['uid'];?>" />
+<input type="hidden" name="fid" value="<?php  if($filter) echo$filter['fid'];?>" />
+<input type="hidden" name="uid" value="<?php  if($filter) echo $filter['uid'];?>" />
 <div>
 <br>
 	<fieldset>	
 		<div>
 			<label>State</label>
-			<input type="text" name="state" value="<?php echo $filter['state'];?>" />
+			<input type="text" name="state" value="<?php  if($filter) echo $filter['state'];?>" />
 		</div>
 
 	</fieldset>
@@ -17,14 +17,14 @@
 		<div class="well">
 			<label class="control-label" for="starttime" style="float: left;   margin-right: 10px;">Start Time</label>
 			<div id="datetimepicker1" class="input-append date" style="float: left;    margin-right: 100px;">
-				<input data-format="yyyy-MM-dd hh:mm:ss" name="s_from" type="text" id="s_from" value="<?php echo $filter['s_from'];?>"></input>
+				<input data-format="yyyy-MM-dd hh:mm:ss" name="s_from" type="text" id="s_from" value="<?php  if($filter)  echo $filter['s_from'];?>"></input>
 				<span class="add-on">
 					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 				</span>
 			</div>
 			<label class="control-label" for="endtime" style="float: left;   margin-right: 10px;">End Time</label>
 			<div id="datetimepicker2" class="input-append date" style="float:left; margin-right:10px">
-				<input data-format="yyyy-MM-dd hh:mm:ss" name="s_to" type="text" id="s_to" value="<?php echo $filter['s_to'];?>" >
+				<input data-format="yyyy-MM-dd hh:mm:ss" name="s_to" type="text" id="s_to" value="<?php  if($filter)  echo $filter['s_to'];?>" >
 				<span class="add-on">
 					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 				</span>
@@ -35,34 +35,34 @@
 			<label class="control-label" for="inputRepeat" style="float:left;margin-right:10px">Repeat</label>
 			<div class="controls" style="float:left;">
 				<select id="repeat_flag" name="repeat_flag" onchange="show_week_days()" style="">
-					<option <?php if($filter['repeat_flag']=='1'){echo "selected";}?> value="1" onclick="">Yes</option>
-					<option <?php if($filter['repeat_flag']=='0'){echo "selected";}?> value="0" onclick="">No</option>
+					<option <?php if($filter && $filter['repeat_flag']=='1'){echo "selected";}?> value="1" onclick="">Yes</option>
+					<option <?php if(!$filter || $filter['repeat_flag']=='0'){echo "selected";}?> value="0" onclick="">No</option>
 				</select>    	
 			</div>
 		</div>
 		</div>
-			<div id="week_days" class="<?php if($filter['repeat_flag']=='0') {echo 'none';}?> " style="float:left; width:25%">
+			<div id="week_days" class="<?php if(!$filter || $filter['repeat_flag']=='0') {echo 'none';}?> " style="float:left; width:25%">
 					<label class="control-label" for="">Days</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="monday" <?php if($filter['monday']) echo 'checked="checked"'; ?> >Monday
+						<input type="checkbox" value="1" name="monday" <?php if($filter&&$filter['monday']) echo 'checked="checked"'; ?> >Monday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="tuesday" <?php if($filter['tuesday']) echo 'checked="checked"'; ?>>Tuesday
+						<input type="checkbox" value="1" name="tuesday" <?php if($filter&&$filter['tuesday']) echo 'checked="checked"'; ?>>Tuesday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="wednesday" <?php if($filter['wednesday']) echo 'checked="checked"'; ?>>Wednesday
+						<input type="checkbox" value="1" name="wednesday" <?php if($filter&&$filter['wednesday']) echo 'checked="checked"'; ?>>Wednesday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="thursday" <?php if($filter['thursday']) echo 'checked="checked"'; ?>>Thursday
+						<input type="checkbox" value="1" name="thursday" <?php if($filter&&$filter['thursday']) echo 'checked="checked"'; ?>>Thursday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="friday" <?php if($filter['friday']) echo 'checked="checked"'; ?>>Friday
+						<input type="checkbox" value="1" name="friday" <?php if($filter&&$filter['friday']) echo 'checked="checked"'; ?>>Friday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="saturday" <?php if($filter['saturday']) echo 'checked="checked"'; ?>>Saturday
+						<input type="checkbox" value="1" name="saturday" <?php if($filter&&$filter['saturday']) echo 'checked="checked"'; ?>>Saturday
 					</label>
 					<label class="checkbox">	
-						<input type="checkbox" value="1" name="sunday" <?php if($filter['sunday']) echo 'checked="checked"'; ?>>Sunday
+						<input type="checkbox" value="1" name="sunday" <?php if($filter&&$filter['sunday']) echo 'checked="checked"'; ?>>Sunday
 					</label>
 				</div>
 	</fieldset>

@@ -129,7 +129,7 @@ class Home extends CI_Controller{
         $this->load->view('filters', $data);
     }
     
-    public function filter(){
+  public function filter(){
         auth_route('user');
         $filter_id = $this->input->get('fid');
         $filter = array();
@@ -142,33 +142,51 @@ class Home extends CI_Controller{
         }
         $data['tags'] = json_decode($tags, true);
         $data['filter'] = $filter;
-        dump($filter);
-        $this->load->view('filter',$data);
-        $this->load->view('footer');
+		$this->load->view('filter',$data);
+        $this->load->view('footer');		
     }
+    
     public function save_filter(){
         auth_route('user');
+        $this->load->model('Filter');
         $post = $this->input->post();
-        $user_id = $post['user_id'];
-
-        $filter_id = $post['filter_id'];
-        dump($filter_id);
-
-        if($filter_id){
-            $this->load->model('Filter');
-            $tags = json_encode($post['tags'],JSON_FORCE_OBJECT);
-            $filter = array('state'=>$post['state'],'tags'=>$tags, 'uid'=>$user_id,'s_from'=>$post['s_from'],
+        	$user_id = $post['uid'];
+	        $filter_id = $post['fid'];
+       		foreach($post as $k=>$v){
+       			if($k == 'tags'){   				     		
+       				$filter['tags'] = json_encode($post['tags'],JSON_FORCE_OBJECT);
+       			}else{
+			     	$filter[$k] = $v;
+			     }
+       			/*array('state'=>$post['state'],'tags'=>$tags, 'uid'=>$user_id,'s_from'=>$post['s_from'],
                             's_to'=>$post['s_to'],'repeat_flag'=>$post['repeat_flag'],'sunday'=>$post['sunday'],
                             'monday'=>$post['monday'],'tuesday'=>$post['tuesday'],'wednesday'=>$post['wednesday'],
                             'thursday'=>$post['thursday'],'friday'=>$post['friday'],'saturday'=>$post['saturday']);
-            $this->Filter->update($filter,$filter_id);
-            redirect('/index.php/filter?fid='.$filter_id,'location');
-        }else{
-            exit('something went wrong');
-        }
+                */
+       		}
+        dump($post);
+        #dump($filter_id);
+        #dump($filter);
+        $this->load->library('form_validation');
+        $this->load->helper(array('form','url'));
+        $this->form_validation->set_rules('state', 'State','required');
+        $this->form_validation->set_rules('tags','Tags','required');
+        $this->form_validation->set_rules('s_from','Start Time', 'required');
+        $this->form_validation->set_rules('s_to','End Time', 'required');
+        $this->form_validation->set_rules('repeat_flag','Repeat Flag','required');
+		if ($this->form_validation->run() == false){
+			$this->load->view('save_filter');#
+		}elseif($post){
+			$this->Filter->update($filter, $filter_id);
+			redirect('/index.php/filter?fid='.$filter_id, 'location');
+		}else{
+			$filter_id = $this->Filter->insert($filter);
+			redirect('/index.php/filter?fid='.$filter_id, 'location');
+		}
+		$this->load->view('footer');
+		
     }
     
-	
 	
     public function place(){
         auth_route('user');
