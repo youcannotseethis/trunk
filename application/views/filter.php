@@ -1,8 +1,8 @@
 <a class="btn btn-info" href="/trunk/index.php/filters">Back to Filters</a>
 <h1>Set Filter</h1>
 <form id="filter" action="/trunk/index.php/home/save_filter" method="post">
-<input type="hidden" name="fid" value="<?php  if($filter) echo$filter['fid'];?>" />
-<input type="hidden" name="uid" value="<?php  if($filter) echo $filter['uid'];?>" />
+<input type="hidden" name="uid" value="<?php  if($filter){echo $filter['uid'];}else{echo $_SESSION['user']['uid'];}?>" />
+<input type="hidden" name="fid" value="<?php if($filter){echo $filter['fid'];}?>" />
 <div>
 <br>
 	<fieldset>	

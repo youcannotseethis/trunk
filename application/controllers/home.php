@@ -150,20 +150,20 @@ class Home extends CI_Controller{
         auth_route('user');
         $this->load->model('Filter');
         $post = $this->input->post();
-        	$user_id = $post['uid'];
-	        $filter_id = $post['fid'];
-       		foreach($post as $k=>$v){
-       			if($k == 'tags'){   				     		
-       				$filter['tags'] = json_encode($post['tags'],JSON_FORCE_OBJECT);
-       			}else{
-			     	$filter[$k] = $v;
-			     }
-       			/*array('state'=>$post['state'],'tags'=>$tags, 'uid'=>$user_id,'s_from'=>$post['s_from'],
-                            's_to'=>$post['s_to'],'repeat_flag'=>$post['repeat_flag'],'sunday'=>$post['sunday'],
-                            'monday'=>$post['monday'],'tuesday'=>$post['tuesday'],'wednesday'=>$post['wednesday'],
-                            'thursday'=>$post['thursday'],'friday'=>$post['friday'],'saturday'=>$post['saturday']);
-                */
-       		}
+        $user_id = $post['uid'];
+	    $filter_id = $post['fid'];
+		foreach($post as $k=>$v){
+			if($k == 'tags'){   				     		
+				$filter['tags'] = json_encode($post['tags'],JSON_FORCE_OBJECT);
+			}else{
+				$filter[$k] = $v;
+			 }
+			/*array('state'=>$post['state'],'tags'=>$tags, 'uid'=>$user_id,'s_from'=>$post['s_from'],
+						's_to'=>$post['s_to'],'repeat_flag'=>$post['repeat_flag'],'sunday'=>$post['sunday'],
+						'monday'=>$post['monday'],'tuesday'=>$post['tuesday'],'wednesday'=>$post['wednesday'],
+						'thursday'=>$post['thursday'],'friday'=>$post['friday'],'saturday'=>$post['saturday']);
+			*/
+		}
         dump($post);
         #dump($filter_id);
         #dump($filter);
@@ -176,12 +176,13 @@ class Home extends CI_Controller{
         $this->form_validation->set_rules('repeat_flag','Repeat Flag','required');
 		if ($this->form_validation->run() == false){
 			$this->load->view('save_filter');#
-		}elseif($post){
+		}elseif($filter_id){
 			$this->Filter->update($filter, $filter_id);
 			redirect('/index.php/filter?fid='.$filter_id, 'location');
 		}else{
 			$filter_id = $this->Filter->insert($filter);
-			redirect('/index.php/filter?fid='.$filter_id, 'location');
+			#exit($fid);
+			redirect('/index.php/filter?fid='.$filter_id,'location');
 		}
 		$this->load->view('footer');
 		

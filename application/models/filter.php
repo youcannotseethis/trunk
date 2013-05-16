@@ -42,7 +42,8 @@ class Filter extends CI_Model {
 		$this->db->update('filter', $arr, array('fid' => $id));
 	}
 	function insert($arr){
-		$arr['dt_inserted'] = $arr['dt_edited'] = date('Y-m-d H:i:s',time());
+		$arr['dt_edited'] = date('Y-m-d H:i:s', time());
+		$arr['dt_inserted'] = date('Y-m-d H:i:s', time());
 		$this->db->insert('filter', $arr);
 		return $this->db->insert_id();
 	}
