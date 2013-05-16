@@ -168,6 +168,8 @@ class Home extends CI_Controller{
         }
     }
     
+	
+	
     public function place(){
         auth_route('user');
         $pid = $this->input->get('pid');
@@ -180,6 +182,44 @@ class Home extends CI_Controller{
             $this->Note->pid = $pid;
             $this->Note->order_by = 'note_dt_inserted desc';
             $note = $this->Note->get();
+			
+			// start handle sort by like count
+			$this->load->model('Like_note');
+			$likeCount = $this->Like_note->countLike();
+			$likeCountArray = [];
+			foreach($likeCount as $sinleLikeCount){
+				$likeCountArray[$sinleLikeCount['nid']]=intval($sinleLikeCount['time']);
+			}
+			#dump($likeCountArray);
+			
+			foreach($note as $k=>$singleNote){
+				if(array_key_exists($singleNote['nid'],$likeCountArray)) {
+					$note[$k]['time']=$likeCountArray[$singleNote['nid']];
+				} else {
+					$note[$k]['time']=0;
+				}
+				#dump($singleNote);
+			}
+			
+			function my_sort($a, $b)
+			{
+				if ( !(isset($a['time']) && isset($b['time'])) ) return 0;
+				if ($b['time'] < $a['time']) {
+				    return -1;
+				} else if  ($b['time'] > $a['time']) {
+				    return 1;
+				} else {
+				    return $b['note_dt_inserted'] - $a['note_dt_inserted'];
+				}
+				  /*
+			    return $b['time'] - $a['time'];*/
+			}
+			
+			usort($note, "my_sort");
+			#dump($note);
+			
+			#dump($note);
+			// end of handle sort by like count
             $data['note']=$note;
 			
 			$this->load->model('Silent');
@@ -202,6 +242,7 @@ class Home extends CI_Controller{
 			}
 			#dump($likeNid);
 			$data['likeNid']=$likeNid;
+			
 			
 			
         } 

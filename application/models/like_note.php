@@ -47,4 +47,9 @@ class Like_note extends CI_Model {
 		$this->db->insert('like_note', $arr);
 		return $this->db->insert_id();
 	}
+	
+	function countLike(){
+		$query = $this->db->query('select nid, count(uid) as time from like_note where like_note.active = 1 group by nid');
+		return $query->result_array();
+	}
 }

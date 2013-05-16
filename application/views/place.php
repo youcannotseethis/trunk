@@ -102,6 +102,7 @@
               <td><?php echo $row['text_body']." #".$row['keyword']; ?></td> 
               <td>by <a href="user?uid=<?php echo $row['uid']?>"><?php echo $row['first_name'].' '.$row['last_name']; ?></a></td> 
               <td>when <?php echo $row['note_dt_inserted']; ?></td> 
+			  <td>liked by <?php echo $row['time']; ?> time</td> 
 			  <?php if (!in_array($row['nid'],$likeNid)) { ?>
 			  <td><button class="btn btn-primary" type="button" onclick="likeNote(<?php echo $_SESSION['user']['uid'];?>,<?php echo $row['nid'];?>,this);">Like!</button></td> 
 			  <?php } else { ?>
