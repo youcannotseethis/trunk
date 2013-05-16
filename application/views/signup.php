@@ -1,4 +1,5 @@
-<form action="/trunk/index.php/pub/attempt_signup" method="post" onsubmit="validateForm(this);return false;">
+<div style="color: #ff0000;"><?php echo validation_errors();?></div>
+<form action="/trunk/index.php/signup" method="post" onsubmit="validateForm(this);return false;">
 	<fieldset>
 		<h1>Create Account</h1>
 		<div class=" has_floats">
@@ -29,6 +30,24 @@
 			<div class="float_left">
 				<label for="gender">Gender</label>
 				<input type="text" value="" name="gender"/>
+			</div>
+		</div>
+		<div class="has_floats">
+			<div class="float_left">
+				<label for="">First Name</label>
+				<input type="text" value="" name="first_name"/>
+			</div>
+		</div>
+		<div class="has_floats">
+			<div class="float_left">
+				<label for="">Last Name</label>
+				<input type="text" value="" name="last_name"/>
+			</div>
+		</div>
+		<div class="has_floats">
+			<div class="float_left">
+				<label for="">Current State</label>
+				<input type="text" value="" name="current_state"/>
 			</div>
 		</div>
 		<div class="has_floats">
