@@ -178,6 +178,7 @@ class Home extends CI_Controller{
 		if($place){
 			$this->load->model('Note');
 			$this->Note->pid = $pid;
+			$this->Note->order_by = 'note_dt_inserted desc';
 			$note = $this->Note->get();
 			$data['note']=$note;
 		} 
