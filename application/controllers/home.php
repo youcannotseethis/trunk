@@ -86,6 +86,7 @@ class Home extends CI_Controller{
         # get this user's recent note
         $this->load->model('Note');
         $this->Note->uid = $uid;
+		$this->Note->order_by = 'note_dt_inserted desc';
         $note            = $this->Note->get();
         $data['note']    = $note;
         # get this user's following
