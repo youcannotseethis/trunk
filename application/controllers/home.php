@@ -26,15 +26,15 @@ class Home extends CI_Controller{
         $data          = $this->data;
         $data['title'] = $this->title;
         #if(!(isset($this->no_view)&&$this->no_view))
-        #	echo make_view($this,$data);
+        #    echo make_view($this,$data);
     }
     
     public function foursquare(){
         #echo 'm';
         #$this->load->view('4sq.html');
         #this->load->view('home');
-		$this->load->view('4sq');
-		$this->load->view('footer');
+        $this->load->view('4sq');
+        $this->load->view('footer');
     }
     public function profile(){
         auth_route('user');
@@ -86,7 +86,7 @@ class Home extends CI_Controller{
         # get this user's recent note
         $this->load->model('Note');
         $this->Note->uid = $uid;
-		$this->Note->order_by = 'note_dt_inserted desc';
+        $this->Note->order_by = 'note_dt_inserted desc';
         $note            = $this->Note->get();
         $data['note']    = $note;
         # get this user's following
@@ -108,108 +108,153 @@ class Home extends CI_Controller{
         $this->load->view('footer');
     }
     
-  	public function filters(){
-		auth_route('user');
-		$user = $_SESSION['user'];
-		$filters = array();
-		if($user){
-			$this->load->model('Filter');
-			$this->Filter->uid = $user['uid'];
-			$filters = $this->Filter->get();
-		}
-		if($filters){
-			foreach($filters as $k=>$filter){
-				$tags = json_decode($filter['tags'],true);
-				#$filters[$k]['tags'] = $tags;
-			}
-		}
-		$data['filters'] = $filters;
-		$data['user'] = $user;
-		#dump($filters);
-		$this->load->view('filters', $data);
-	}
-	
-	public function filter(){
-		auth_route('user');
-		$filter_id = $this->input->get('fid');
-		$filter = array();
-		$tags = '{}';
-		if($filter_id){
-			$this->load->model('Filter');
-			$this->Filter->fid = $filter_id;
-			$filter = current($this->Filter->get());
-			$tags = $filter['tags'];
-		}
-		$data['tags'] = json_decode($tags, true);
-		$data['filter'] = $filter;
-		dump($filter);
-		$this->load->view('filter',$data);
-		$this->load->view('footer');
-	}
-	public function save_filter(){
-		auth_route('user');
-		$post = $this->input->post();
-		$user_id = $post['user_id'];
-
-		$filter_id = $post['filter_id'];
-		dump($filter_id);
-
-		if($filter_id){
-			$this->load->model('Filter');
-			$tags = json_encode($post['tags'],JSON_FORCE_OBJECT);
-			$filter = array('state'=>$post['state'],'tags'=>$tags, 'uid'=>$user_id,'s_from'=>$post['s_from'],
-							's_to'=>$post['s_to'],'repeat_flag'=>$post['repeat_flag'],'sunday'=>$post['sunday'],
-							'monday'=>$post['monday'],'tuesday'=>$post['tuesday'],'wednesday'=>$post['wednesday'],
-							'thursday'=>$post['thursday'],'friday'=>$post['friday'],'saturday'=>$post['saturday']);
-			$this->Filter->update($filter,$filter_id);
-			redirect('/index.php/filter?fid='.$filter_id,'location');
-		}else{
-			exit('something went wrong');
-		}
-	}
+      public function filters(){
+        auth_route('user');
+        $user = $_SESSION['user'];
+        $filters = array();
+        if($user){
+            $this->load->model('Filter');
+            $this->Filter->uid = $user['uid'];
+            $filters = $this->Filter->get();
+        }
+        if($filters){
+            foreach($filters as $k=>$filter){
+                $tags = json_decode($filter['tags'],true);
+                #$filters[$k]['tags'] = $tags;
+            }
+        }
+        $data['filters'] = $filters;
+        $data['user'] = $user;
+        #dump($filters);
+        $this->load->view('filters', $data);
+    }
     
-	public function place(){
-		auth_route('user');
-		$pid = $this->input->get('pid');
-		$this->load ->model('Place');
-		$this->Place->pid = $pid;
-		$place = current($this->Place->get());
-		$data['place']=$place;
-		if($place){
-			$this->load->model('Note');
-			$this->Note->pid = $pid;
-			$this->Note->order_by = 'note_dt_inserted desc';
-			$note = $this->Note->get();
-			$data['note']=$note;
-		} 
-		$this->load->view('place',$data);
-		$this->load->view('footer');
-	}
-	
-	public function add_note(){
-		dump($this->input->post());
-		$this->load->model('Note');
-		$data = array(
-		   'uid' => $this->input->post('uid') , 
-		   'pid' => $this->input->post('pid') , 
-		   'text_body' => $this->input->post('text_body') , 
-		   'keyword' => $this->input->post('keyword') , 
+    public function filter(){
+        auth_route('user');
+        $filter_id = $this->input->get('fid');
+        $filter = array();
+        $tags = '{}';
+        if($filter_id){
+            $this->load->model('Filter');
+            $this->Filter->fid = $filter_id;
+            $filter = current($this->Filter->get());
+            $tags = $filter['tags'];
+        }
+        $data['tags'] = json_decode($tags, true);
+        $data['filter'] = $filter;
+        dump($filter);
+        $this->load->view('filter',$data);
+        $this->load->view('footer');
+    }
+    public function save_filter(){
+        auth_route('user');
+        $post = $this->input->post();
+        $user_id = $post['user_id'];
 
-		   's_from' => $this->input->post('s_from') , 
-		   's_to' => $this->input->post('s_to'), 
-		   'repeat_flag' => $this->input->post('repeat_flag'), 
-		   'sunday' => $this->input->post('sunday'), 
-		   'monday'=> $this->input->post('monday'), 
-		   'tuesday' => $this->input->post('tuesday'),
-		   'wednesday'=> $this->input->post('wednesday'), 
-		   'thursday'=> $this->input->post('thursday'), 
-		   'friday'=> $this->input->post('friday'), 
-		   'saturday'=> $this->input->post('saturday')
-		);
-		$this->db->insert('note', $data); 
-		$newURL ='/index.php/home/place?pid='.$this->input->post('pid');
-		$this->load->helper('url');
-		redirect($newURL,'location');
-	}
+        $filter_id = $post['filter_id'];
+        dump($filter_id);
+
+        if($filter_id){
+            $this->load->model('Filter');
+            $tags = json_encode($post['tags'],JSON_FORCE_OBJECT);
+            $filter = array('state'=>$post['state'],'tags'=>$tags, 'uid'=>$user_id,'s_from'=>$post['s_from'],
+                            's_to'=>$post['s_to'],'repeat_flag'=>$post['repeat_flag'],'sunday'=>$post['sunday'],
+                            'monday'=>$post['monday'],'tuesday'=>$post['tuesday'],'wednesday'=>$post['wednesday'],
+                            'thursday'=>$post['thursday'],'friday'=>$post['friday'],'saturday'=>$post['saturday']);
+            $this->Filter->update($filter,$filter_id);
+            redirect('/index.php/filter?fid='.$filter_id,'location');
+        }else{
+            exit('something went wrong');
+        }
+    }
+    
+    public function place(){
+        auth_route('user');
+        $pid = $this->input->get('pid');
+        $this->load ->model('Place');
+        $this->Place->pid = $pid;
+        $place = current($this->Place->get());
+        $data['place']=$place;
+        if($place){
+            $this->load->model('Note');
+            $this->Note->pid = $pid;
+            $this->Note->order_by = 'note_dt_inserted desc';
+            $note = $this->Note->get();
+            $data['note']=$note;
+			
+			$this->load->model('Silent');
+			$this->Silent->uid= $_SESSION['user']['uid'];
+			$muteNote = $this->Silent->get();
+			$muteNid = [];
+			foreach($muteNote as $singleMuteNote){
+				array_push($muteNid,$singleMuteNote['nid']);
+			}
+			$data['muteNid']=$muteNid;
+			
+			$this->load->model('Like_note');
+			$this->Like_note->uid= $_SESSION['user']['uid'];
+			$likeNote = $this->Like_note->get();
+			#dump($likeNote);
+			$likeNid = [];
+			foreach($likeNote as $singleLikeNote){
+				#dump($singleLikeNote);
+				array_push($likeNid,$singleLikeNote['nid']);
+			}
+			#dump($likeNid);
+			$data['likeNid']=$likeNid;
+			
+			
+        } 
+        $this->load->view('place',$data);
+        $this->load->view('footer');
+    }
+    
+    public function add_note(){
+        #dump($this->input->post());
+        $this->load->model('Note');
+        $data = array(
+           'uid' => $this->input->post('uid') , 
+           'pid' => $this->input->post('pid') , 
+           'text_body' => $this->input->post('text_body') , 
+           'keyword' => $this->input->post('keyword') , 
+
+           's_from' => $this->input->post('s_from') , 
+           's_to' => $this->input->post('s_to'), 
+           'repeat_flag' => $this->input->post('repeat_flag'), 
+           'sunday' => $this->input->post('sunday'), 
+           'monday'=> $this->input->post('monday'), 
+           'tuesday' => $this->input->post('tuesday'),
+           'wednesday'=> $this->input->post('wednesday'), 
+           'thursday'=> $this->input->post('thursday'), 
+           'friday'=> $this->input->post('friday'), 
+           'saturday'=> $this->input->post('saturday')
+        );
+        $this->db->insert('note', $data); 
+        $newURL ='/index.php/home/place?pid='.$this->input->post('pid');
+        $this->load->helper('url');
+        redirect($newURL,'location');
+    }
+    
+    public function muteNote(){
+        $this->load->model('silent');
+        $data = array(
+           'uid' => $this->input->post('uid') , 
+           'nid' => $this->input->post('nid')    
+        );
+		$this->db ->insert('silent',$data);
+        $a = 'reload';
+        exit($a);
+    }
+        
+    public function likeNote(){
+        $this->load->model('Like_note');
+        $data = array(
+           'uid' => $this->input->post('uid') , 
+           'nid' => $this->input->post('nid')    
+        );
+		$this->Like_note ->insert($data);
+        $a = 'reload';
+        exit($a);
+    }
 }
 ?>

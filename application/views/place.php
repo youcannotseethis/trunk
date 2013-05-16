@@ -95,15 +95,22 @@
           <?php 
           $index = 1;
         foreach($note as $row){
+			if (!in_array($row['nid'],$muteNid)){
           ?>
           <tr class="info">
               <td><a href="note?nid=<?php echo $row['nid'];?>"><?php echo $index;$index+=1; ?></a></td>
               <td><?php echo $row['text_body']." #".$row['keyword']; ?></td> 
               <td>by <a href="user?uid=<?php echo $row['uid']?>"><?php echo $row['first_name'].' '.$row['last_name']; ?></a></td> 
               <td>when <?php echo $row['note_dt_inserted']; ?></td> 
+			  <?php if (!in_array($row['nid'],$likeNid)) { ?>
+			  <td><button class="btn btn-primary" type="button" onclick="likeNote(<?php echo $_SESSION['user']['uid'];?>,<?php echo $row['nid'];?>,this);">Like!</button></td> 
+			  <?php } else { ?>
+			  <td><button class="btn btn-info" type="button">Liked</button></td> 
+			  <?php } ?>
+			  <td><button class="btn btn-warning" type="button" onclick="muteNote(<?php echo $_SESSION['user']['uid'];?>,<?php echo $row['nid'];?>,this);">Mute</button></td> 
             </tr>
           <?php
-          }
+          }}
           ?>
       </table>
       <?php
@@ -137,6 +144,36 @@
         language: 'pt-BR'
       });
     });
+	function likeNote(uid,nid,obj){
+        wc_act(uid,nid,obj,'like','note');
+	};
+	function muteNote(uid,nid,obj){
+	    if(confirm('Are you sure?')){
+	        wc_act(uid,nid,obj,'mute','note');
+	    }
+	};
+	function wc_act(uid,nid,obj,action,type){
+	    var obj = $(obj);
+
+        var functionName ;
+		if (action=='mute'){
+		    functionName = '<?php echo BASE_URI;?>index.php/home/muteNote';
+	    } else if (action=='like'){
+	 	    functionName = '<?php echo BASE_URI;?>index.php/home/likeNote';
+	    } else if (action=='unlike') {
+	    	functionName = '<?php echo BASE_URI;?>index.php/home/unlikeNote';
+	    }
+	    $.post(functionName, {uid:uid,nid:nid,action:action},function(data){
+	       // obj.parent().parent().hide();  //用jquery移除被delete的那行
+			
+	        if(data=='reload'){
+				
+                window.location.reload();
+            }else{
+				
+	            alert(data);}
+	        });
+	};
     </script>
 </body>
 </html>  
