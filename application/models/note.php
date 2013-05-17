@@ -13,6 +13,8 @@ class Note extends CI_Model {
 		$this->db->join('user','user.uid=note.uid');
 		$this->db->join('place','place.pid=note.pid');
 		$where = ' 1=1 ';
+		$newString ='and note.public = 1 or (note.public = 0 and note.uid in (select current_u from follow where active = "1" and followed_user ='.$_SESSION['user']['uid'].' ))';
+		$where .= $newString;
 		if(isset($this->nid)){
 			$where .= ' AND note.nid = '.$this->nid;
 		}

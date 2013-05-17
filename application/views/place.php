@@ -50,6 +50,9 @@
 			   <input type="hidden" name = "uid" value = "<?php echo $_SESSION['user']['uid']; ?>">
                <b>Note:  </b><input type="text" name="text_body" placeholder="About this place…"><br/>
                <b>Tag :  </b><input type="text" name="keyword" placeholder="food, coffee, or some keyword…">
+               <label class="checkbox">
+                     <input type="checkbox" value="1" id="public" name="public"> Private? Only your friend can see it.
+                </label>
                <label>About Filter</label>
 			   <div class="well">
    			<label class="control-label" for="starttime">Start Time</label>

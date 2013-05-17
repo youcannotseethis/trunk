@@ -272,12 +272,17 @@ class Home extends CI_Controller{
     public function add_note(){
         #dump($this->input->post());
         $this->load->model('Note');
+		// begin handle the private flag
+		$public = intval($this->input->post('public'));
+		if ($public!=1) $public = 0;
+		$public = 1- $public;
+		// end of handle the private flag
         $data = array(
            'uid' => $this->input->post('uid') , 
            'pid' => $this->input->post('pid') , 
            'text_body' => $this->input->post('text_body') , 
            'keyword' => $this->input->post('keyword') , 
-
+           'public' => $public,
            's_from' => $this->input->post('s_from') , 
            's_to' => $this->input->post('s_to'), 
            'repeat_flag' => $this->input->post('repeat_flag'), 

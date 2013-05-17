@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 09, 2013 at 12:38 PM
+-- Generation Time: May 16, 2013 at 06:11 PM
 -- Server version: 5.5.30
 -- PHP Version: 5.4.14
 
@@ -112,6 +112,14 @@ CREATE TABLE IF NOT EXISTS `like_note` (
   PRIMARY KEY (`uid`,`nid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `like_note`
+--
+
+INSERT INTO `like_note` (`uid`, `nid`, `dt_inserted`, `dt_edited`, `active`) VALUES
+(1, 7, '2013-05-16 14:28:25', '2013-05-16 18:28:25', 1),
+(1, 8, '2013-05-16 14:31:19', '2013-05-16 18:31:19', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -137,20 +145,32 @@ CREATE TABLE IF NOT EXISTS `note` (
   `thursday` tinyint(1) DEFAULT '0',
   `friday` tinyint(1) DEFAULT '0',
   `saturday` tinyint(1) DEFAULT '0',
+  `public` tinyint(1) NOT NULL,
   PRIMARY KEY (`nid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `note`
 --
 
-INSERT INTO `note` (`nid`, `uid`, `pid`, `text_body`, `keyword`, `dt_inserted`, `dt_edited`, `active`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`) VALUES
-(1, 1, 1, 'sucks', 'food', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, 1, NULL, NULL, NULL, NULL, NULL),
-(2, 2, 2, 'so so', 'food', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, 1, NULL, NULL, NULL, NULL),
-(3, 3, 3, 'good', 'food', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
-(4, 4, 4, 'disgusting', 'escort', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, NULL, 1, NULL, NULL),
-(5, 5, 5, 'beautiful', 'escort', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(6, 6, 6, 'great', 'coffee', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `note` (`nid`, `uid`, `pid`, `text_body`, `keyword`, `dt_inserted`, `dt_edited`, `active`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `public`) VALUES
+(1, 1, 1, 'sucks', 'food', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, 1, NULL, NULL, NULL, NULL, NULL, 1),
+(2, 2, 2, 'so so', 'food', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1),
+(3, 3, 3, 'good', 'food', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, 1, NULL, NULL, NULL, 1),
+(4, 4, 4, 'disgusting', 'escort', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, 1),
+(5, 5, 5, 'beautiful', 'escort', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, NULL, NULL, 1, NULL, 1),
+(6, 6, 6, 'great', 'coffee', '2013-04-20 15:41:57', '0000-00-00 00:00:00', 1, '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1),
+(7, 1, 3, 'aaa', 'bbbb', '2013-05-16 00:00:00', '2013-05-10 03:05:32', 1, '2013-05-06 23:03:27', '2013-05-22 23:03:27', 1, 1, 0, 0, 0, 0, 0, 0, 1),
+(8, 1, 3, 'so good', 'coffee', '2013-05-14 00:00:00', '2013-05-14 21:19:47', 1, '2013-05-05 17:19:24', '2013-05-13 17:19:24', 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(9, 1, 3, 'd', 'dddd', NULL, '2013-05-16 23:34:26', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(10, 1, 3, 'test', 'teesfsf', NULL, '2013-05-16 23:36:10', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, 1, 3, 'fff', 'fdafasf', NULL, '2013-05-16 23:36:47', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(12, 1, 3, 'fdafaf', 'fdafafa', NULL, '2013-05-16 23:37:17', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(13, 1, 3, 'fdafa', 'dfafafa', NULL, '2013-05-16 23:37:49', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(14, 1, 3, '', '', NULL, '2013-05-16 23:39:01', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(15, 1, 3, '123', '', NULL, '2013-05-16 23:39:16', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(16, 1, 3, '', '', NULL, '2013-05-16 23:42:59', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(17, 1, 3, '', '', '2013-05-17 00:00:00', '2013-05-16 23:43:24', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -276,6 +296,13 @@ CREATE TABLE IF NOT EXISTS `silent` (
   `nid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`,`nid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `silent`
+--
+
+INSERT INTO `silent` (`uid`, `nid`) VALUES
+(1, 7);
 
 -- --------------------------------------------------------
 
