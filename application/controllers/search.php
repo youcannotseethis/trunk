@@ -24,7 +24,7 @@ class Search extends CI_Controller{
         $this->load->view('footer');
     }
     public function user(){
-    	$q = $this->input->get('q');
+    	$q = $this->input->post('q_user');
     	$this->load->model('User');
     	$this->User->searchQ = $q;
     	$data['users'] = $this->User->get();
@@ -32,7 +32,7 @@ class Search extends CI_Controller{
     	$this->load->view('footer');
     }
     public function note(){
-    	$q = $this->input->post('q');
+    	$q = $this->input->post('q_note');
     	$this->load->model('Note');
     	$this->Note->searchQ = $q;
     	$data['notes'] = $this->Note->get();

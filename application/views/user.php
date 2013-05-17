@@ -3,14 +3,17 @@
 <p><?php 
 if ($user['uid']==$_SESSION['user']['uid']) {
 	echo "It's You!";
-} elseif($relation){?>
-	<a class="btn btn-primary" href="javascript:void(0)" onclick="follow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
+} elseif(!$relation){?>
+	<a class="btn btn-primary" style="float:left;margin-right:30px" href="javascript:void(0)" onclick="follow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
 		Follow
 	</a>	
+	<div class="btn btn-info"><?php echo 'Following you'?></div>
 <?php }else{?>
-	<a class="btn btn-danger" href="javascript:void(0)" onclick="unfollow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
+	<a class="btn btn-danger" style="float:left;margin-right:30px"  href="javascript:void(0)" onclick="unfollow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
 		Unfollow
 	</a>
+	<div class="btn btn-info"><?php echo 'Not following you'?></div>
+
 <?php }
 ?></p>
 <p><b>Gender:</b> <?php

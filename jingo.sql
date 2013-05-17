@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 17, 2013 at 07:06 AM
+-- Generation Time: May 17, 2013 at 07:50 AM
 -- Server version: 5.5.30
 -- PHP Version: 5.4.14
 
@@ -75,14 +75,13 @@ CREATE TABLE IF NOT EXISTS `follow` (
   `dt_edited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`FOLLOW_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `follow`
 --
 
 INSERT INTO `follow` (`FOLLOW_ID`, `CURRENT_U`, `FOLLOWED_USER`, `dt_inserted`, `dt_edited`, `active`) VALUES
-(1, 1, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (2, 1, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (3, 2, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (4, 2, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
@@ -98,10 +97,8 @@ INSERT INTO `follow` (`FOLLOW_ID`, `CURRENT_U`, `FOLLOWED_USER`, `dt_inserted`, 
 (14, 5, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (15, 6, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
 (16, 6, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(17, 1, 3, '2013-05-17 07:02:06', '2013-05-17 11:02:06', 1),
-(18, 1, 3, '2013-05-17 07:04:12', '2013-05-17 11:04:12', 1),
-(19, 1, 3, '2013-05-17 07:04:16', '2013-05-17 11:04:16', 1),
-(20, 1, 3, '2013-05-17 07:04:21', '2013-05-17 11:04:21', 1);
+(24, 1, 3, '2013-05-17 07:37:05', '2013-05-17 11:37:05', 1),
+(28, 1, 5, '2013-05-17 07:42:10', '2013-05-17 11:42:10', 1);
 
 -- --------------------------------------------------------
 

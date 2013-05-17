@@ -327,7 +327,7 @@ class Home extends CI_Controller{
     		$this->follow->current_u = $c_uid;
     		$this->follow->followed_user = $f_uid;
     		$follow = current($this->follow->get());
-    		$this->db->delete('follow',$follow['follow_id']);
+    		$this->db->delete('follow',array('follow_id'=>$follow['FOLLOW_ID']));
     	}
     	exit('reload');
     }
