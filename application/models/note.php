@@ -44,7 +44,8 @@ class Note extends CI_Model {
 		$this->db->update('note', $arr, array('nid' => $id));
 	}
 	function insert($arr){
-		$arr['dt_inserted'] = $arr['dt_edited'] = date('Y-m-d H:i:s',time());
+		$arr['dt_inserted'] = date('Y-m-d H:i:s',time());
+		$arr['dt_edited'] = date('Y-m-d H:i:s',time());
 		$this->db->insert('note', $arr);
 		return $this->db->insert_id();
 	}

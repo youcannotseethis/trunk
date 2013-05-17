@@ -32,13 +32,14 @@
             <div class="nav-collapse collapse">
               <ul class="nav">
                 <li class="active"><a href="">Home</a></li>
+                <li><a href="/trunk/index.php/search">Search</a></li> 
                 <?php if($_SESSION){ ?>
                 <li><a href="/trunk/index.php/user?uid=
 					<?php
 					echo  $_SESSION['user']['uid'];
 					?>
 					">Profile</a></li>
-                <li><a href="/trunk/index.php/filters">Filters</a></li>      
+                <li><a href="/trunk/index.php/filters">Filters</a></li>    
                 <?php } ?>
               </ul>  
         <ul class="nav pull-right">
