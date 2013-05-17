@@ -17,7 +17,7 @@ class User extends CI_Model {
 			$where .= " AND ((LOWER(user.uname) LIKE $q) OR (LOWER(user.email) LIKE $q)
 						OR (LOWER(user.uid) LIKE $q))";
 		}
-
+		
 		if(isset($this->uid)){
 			$where .= ' AND user.uid = '.$this->uid;
 		}		

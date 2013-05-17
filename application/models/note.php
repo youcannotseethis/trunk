@@ -15,6 +15,10 @@ class Note extends CI_Model {
 		$where = ' 1=1 ';
 		$newString ='and note.public = 1 or (note.public = 0 and note.uid in (select current_u from follow where active = "1" and followed_user ='.$_SESSION['user']['uid'].' ))';
 		$where .= $newString;
+		if(isset($this->searchQ)){
+			$q = $this->db->escape('%'.$this->searchQ.'%');
+			$where .= " AND ((LOWER(note.text_body) LIKE $q) OR (LOWER(note.keyword) LIKE $q) ";
+		}
 		if(isset($this->nid)){
 			$where .= ' AND note.nid = '.$this->nid;
 		}

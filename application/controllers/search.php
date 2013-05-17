@@ -40,3 +40,4 @@ class Search extends CI_Controller{
     	$this->load->view('search_note',$data);
     	$this->load->view('footer');
     }
+}

@@ -10,7 +10,6 @@
 			<label>State</label>
 			<input type="text" name="state" value="<?php  if($filter) echo $filter['state'];?>" />
 		</div>
-
 	</fieldset>
 <br>
 	<fieldset>
@@ -29,7 +28,6 @@
 					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 				</span>
 			</div>
-	
 	
 		<div class="control-group" style="float:left; width:25%">
 			<label class="control-label" for="inputRepeat" style="float:left;margin-right:10px">Repeat</label>
