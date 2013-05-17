@@ -1,6 +1,8 @@
 <table id="search_note" class="table table-hover">
+
 	<tbody>
-<?php	if($notes){?>
+	<h1>Search Results for <span style="color:#ff0000"><?php echo $q;?></span><h1>
+<?php	if($notes){ ?>
 			<th>ID</th>
 			<th>User</th>
 			<th>Keyword</th>
@@ -19,5 +21,5 @@
 <?php }}else{
 ?>			<tr><div style="color:#ff0000">No results</div></tr>
 <?php }?>
-?>	</tbody>
+	</tbody>
 </table>

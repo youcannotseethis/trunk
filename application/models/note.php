@@ -17,7 +17,7 @@ class Note extends CI_Model {
 		$where .= $newString;
 		if(isset($this->searchQ)){
 			$q = $this->db->escape('%'.$this->searchQ.'%');
-			$where .= " AND ((LOWER(note.text_body) LIKE $q) OR (LOWER(note.keyword) LIKE $q) ";
+			$where .= " AND ((LOWER(note.text_body) LIKE $q) OR (LOWER(note.keyword) LIKE $q)) ";
 		}
 		if(isset($this->nid)){
 			$where .= ' AND note.nid = '.$this->nid;

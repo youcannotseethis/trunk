@@ -11,7 +11,11 @@ class Filter extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('filter');
 		$where = ' 1=1 ';
-		
+		if(isset($this->time_slot_no_repeat)){
+			$where .= ' AND filter.s_from < '.$this->time_slot_no_repeat.' AND filter.s_to > '.$this->time_slot_no_repeat.' ';
+		}
+		if(isset($this->time_slot_repeat)){
+		}
 		if(isset($this->fid)){
 			$where .= ' AND filter.fid = '.$this->fid;
 		}	

@@ -30,13 +30,13 @@ class Search extends CI_Controller{
     	$data['users'] = $this->User->get();
     	$this->load->view('search_user',$data);
     	$this->load->view('footer');
-    	
     }
     public function note(){
-    	$q = $this->input->get('q');
+    	$q = $this->input->post('q');
     	$this->load->model('Note');
     	$this->Note->searchQ = $q;
     	$data['notes'] = $this->Note->get();
+    	$data['q'] = $q;
     	$this->load->view('search_note',$data);
     	$this->load->view('footer');
     }

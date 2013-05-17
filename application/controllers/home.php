@@ -188,7 +188,14 @@ class Home extends CI_Controller{
 		
     }
     
-	
+	public function places(){
+		auth_route('user');
+		$this->title = 'Places';
+		$this->load->model('Place');
+		$places = $this->Place->get();
+		$data['places'] = $places;
+		$this->load->view('places', $data);
+	}
     public function place(){
         auth_route('user');
         $pid = $this->input->get('pid');
