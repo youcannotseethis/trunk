@@ -62,10 +62,10 @@
              <fieldset>
                <br/>
 			   <input type="hidden" name = "uid" value = "<?php echo $_SESSION['user']['uid']; ?>">
-               <b>Latitude:  </b><input type="text" id ="latitude" name="latitude" placeholder="<?php 
+               <b>Latitude:  </b><input type="text" id ="latitude" name="latitude" value="<?php 
               echo $userinfo['last_latitude']; 
               ?>"><br/>
-               <b>Longitude :  </b><input type="text" id="longitude" name="longitude" placeholder="<?php 
+               <b>Longitude :  </b><input type="text" id="longitude" name="longitude" value="<?php 
               echo $userinfo['last_longitude']; 
               ?>">
                <span class="help-block">  </span>

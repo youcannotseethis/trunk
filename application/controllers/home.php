@@ -352,7 +352,6 @@ class Home extends CI_Controller{
 		// insert to user localtion record
 		// TO DO
 		//
-		
 		$newURL = '/index.php/home/fakeloc';
         $this->load->helper('url');
         redirect($newURL,'location');
