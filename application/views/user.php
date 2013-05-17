@@ -1,5 +1,5 @@
 <div style='width=75%; float:left;'>
-<h1><?php echo $user['first_name']." ".$user['last_name'];?> 's Homepage</h1>
+<h1><?php echo $user['uname'];?> 's Homepage</h1>
 <p><?php 
 if ($user['uid']==$_SESSION['user']['uid']) {
 	echo "It's You!";
@@ -18,11 +18,11 @@ if ($user['uid']==$_SESSION['user']['uid']) {
 ?></p>
 <p><b>Gender:</b> <?php
     if ($user['gender']==1){
-    	echo "gentle";
+    	echo "Male";
     } else if ($user['gender']==0){
-    	echo "lady";
+    	echo "Female";
     } else {
-    	echo "secret";
+    	echo "Secret";
     }
 ?></p>
 <p><b>Description:</b> <?php echo $user['description']; ?> </p>
