@@ -20,12 +20,23 @@ class Search extends CI_Controller{
         #    echo make_view($this,$data);
     }
     public function index(){
-        auth_route('user');
-        $this->load->view('search', $data);
+    	$this->load->view('search');
         $this->load->view('footer');
     }
-    public function u(){
+    public function user(){
     	$q = $this->input->get('q');
     	$this->load->model('User');
-    	$this->User->searchQ();
+    	$this->User->searchQ = $q;
+    	$data['users'] = $this->User->get();
+    	$this->load->view('search_user',$data);
+    	$this->load->view('footer');
+    	
+    }
+    public function note(){
+    	$q = $this->input->get('q');
+    	$this->load->model('Note');
+    	$this->Note->searchQ = $q;
+    	$data['notes'] = $this->Note->get();
+    	$this->load->view('search_note',$data);
+    	$this->load->view('footer');
     }
