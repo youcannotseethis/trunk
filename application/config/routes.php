@@ -46,7 +46,8 @@ $route['signup'] = "pub/signup";
 $route['filters'] = "home/filters";
 $route['user'] = "home/user";
 $route['filter'] = "home/filter";
-
+$route['note'] = "home/note";
+$route['place'] = "home/place";
 
 
 
