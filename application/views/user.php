@@ -3,9 +3,15 @@
 <p><?php 
 if ($user['uid']==$_SESSION['user']['uid']) {
 	echo "It's You!";
-} else {
-	echo "follow or unfollow, TODO";
-}
+} elseif($relation){?>
+	<a class="btn btn-primary" href="javascript:void(0)" onclick="follow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
+		Follow
+	</a>	
+<?php }else{?>
+	<a class="btn btn-danger" href="javascript:void(0)" onclick="unfollow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
+		Unfollow
+	</a>
+<?php }
 ?></p>
 <p><b>Gender:</b> <?php
     if ($user['gender']==1){
@@ -66,3 +72,23 @@ if ($user['uid']==$_SESSION['user']['uid']) {
 	</div>
 	
 </div>
+
+<script>
+	function follow(c_uid, f_uid,obj){
+		wc_action(c_uid,f_uid,'follow');
+	}
+	function unfollow(c_uid, f_uid, obj){
+		wc_action(c_uid, f_uid, 'unfollow');
+	}
+
+	function wc_action(c_uid,f_uid,action){
+	    var obj = $(obj);
+	    $.post( '<?php echo BASE_URI;?>index.php/home/follow', {c_uid:c_uid,f_uid:f_uid,action:action},function(data){
+	        if(data=='reload'){				
+                window.location.reload();
+            }else{
+				
+	            alert(data);}
+	        });
+	};
+</script>

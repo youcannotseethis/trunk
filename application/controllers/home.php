@@ -102,6 +102,13 @@ class Home extends CI_Controller{
         $this->f2->followed_user = $uid;
         $followed                = $this->f2->get();
         $data['followed']        = $followed;
+        
+        if($uid != $_SESSION['user']['uid']){
+        	$this->load->model('follow');
+        	$this->follow->current_u = $_SESSION['user']['uid'];
+        	$this->follow->followed_user = $uid;
+        	$data['relation'] = $this->follow->get();
+        }
         # load user view
         if (empty($user)) {
             show_404('page');
@@ -131,7 +138,7 @@ class Home extends CI_Controller{
         #dump($filters);
         $this->load->view('filters', $data);
     }
-    
+		
   public function filter(){
         auth_route('user');
         $filter_id = $this->input->get('fid');
@@ -309,7 +316,21 @@ class Home extends CI_Controller{
         $this->load->helper('url');
         redirect($newURL,'location');
     }
-    
+    public function follow(){
+    	$this->load->model('follow');
+    	$c_uid = $this->input->post('c_uid');
+    	$f_uid = $this->input->post('f_uid');
+    	$action = $this->input->post('action');
+    	if($action == 'follow'){
+    		$follow_id = $this->follow->insert(array('current_u'=>$c_uid, 'followed_user'=>$f_uid));
+    	}elseif($action == 'unfollow'){
+    		$this->follow->current_u = $c_uid;
+    		$this->follow->followed_user = $f_uid;
+    		$follow = current($this->follow->get());
+    		$this->db->delete('follow',$follow['follow_id']);
+    	}
+    	exit('reload');
+    }
     public function muteNote(){
         $this->load->model('silent');
         $data = array(
@@ -499,9 +520,9 @@ class Home extends CI_Controller{
 			}
 			
 		}else $data['note'] = $note1;
-		foreach($note1 as $k=>$note){
+		/*foreach($note1 as $k=>$note){
 			if($note['s_from']<
-		}
+		}*/
 	    $this->load->model('Silent');
 	    $this->Silent->uid= $_SESSION['user']['uid'];
 	    $muteNote = $this->Silent->get();

@@ -38,8 +38,7 @@ class Follow extends CI_Model {
 	
 	function insert($arr){
 		$arr['dt_inserted'] = $arr['dt_edited'] = date('Y-m-d H:i:s',time());
-		$arr['password'] = $arr['password'];//$this->prep_password($arr['password']);
-		$this->db->insert('user', $arr);
+		$this->db->insert('follow', $arr);
 		return $this->db->insert_id();
 	}
 	 
