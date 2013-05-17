@@ -439,15 +439,15 @@ class Home extends CI_Controller{
 		if($filter){
 			$tags = json_decode($filter['tags'],true);
 		}
+		#dump($note1);	
 		#dump($tags);
 		foreach($note1 as $k=>$n){
-				#dump(strpos($n['text_body'],'asdfadsf'));
-				if((strpos($n['text_body'],'food')==false )&&(strpos($n['keyword'],'food')==false )){
-					#unset($note1[$k]);
-				}
+			#dump($n);
+			if((strpos($n['text_body'],'food')==false)&&(strpos($n['keyword'],'food')==false)){
+				//unset($note1[$k]);
+			}
 		}
-		
-	
+			
 		#dump($note1);		
 		$data['note'] = $note1;
 	    $this->load->model('Silent');
