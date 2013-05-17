@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 16, 2013 at 06:11 PM
+-- Generation Time: May 16, 2013 at 06:43 PM
 -- Server version: 5.5.30
 -- PHP Version: 5.4.14
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `filter` (
   `fid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
   `state` varchar(64) NOT NULL,
-  `tag` varchar(64) NOT NULL,
+  `tags` varchar(64) NOT NULL,
   `s_from` datetime DEFAULT '0000-00-00 00:00:00',
   `s_to` datetime DEFAULT '0000-00-00 00:00:00',
   `repeat_flag` tinyint(1) DEFAULT '0',
@@ -45,20 +45,21 @@ CREATE TABLE IF NOT EXISTS `filter` (
   `dt_edited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`fid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `filter`
 --
 
-INSERT INTO `filter` (`fid`, `uid`, `state`, `tag`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `dt_inserted`, `dt_edited`, `active`) VALUES
-(1, 1, 'traveling', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 1, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(2, 2, 'working', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(3, 3, 'lunch', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(4, 4, 'sleeping', 'escort', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 0, 1, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(5, 5, 'boring', 'escort', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 0, 0, 1, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(6, 6, 'doing database homework', 'coffee', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
-(7, 6, 'working', 'food', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
+INSERT INTO `filter` (`fid`, `uid`, `state`, `tags`, `s_from`, `s_to`, `repeat_flag`, `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `dt_inserted`, `dt_edited`, `active`) VALUES
+(1, 1, 'traveling', '{"0":"traveling"}', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 1, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '2013-05-16 22:41:39', 1),
+(2, 2, 'working', '{"0":"working"}', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 0, 0, 0, 1, 0, 0, 0, 0, '0000-00-00 00:00:00', '2013-05-16 22:42:13', 1),
+(3, 3, 'lunch', '{"0":"lunch"}', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', '2013-05-16 22:40:33', 1),
+(4, 4, 'sleeping', '{"0":"sleeping"}', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 0, 1, 0, 0, '0000-00-00 00:00:00', '2013-05-16 22:40:44', 1),
+(5, 5, 'boring', '{"0":"boring"}', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 0, 0, 1, 0, '0000-00-00 00:00:00', '2013-05-16 22:40:53', 1),
+(6, 6, 'doing database homework', '{"0":"doing database project"}', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 1, 0, 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', '2013-05-16 22:41:02', 1),
+(7, 6, 'working', '{"0":"working"}', '2013-04-13 10:40:35', '2013-04-22 10:40:39', 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', '2013-05-16 22:41:11', 1),
+(8, 1, 'state8', '{"0":"state8","1":"state8"}', '2013-05-16 21:38:18', '2013-04-28 21:38:18', 0, 0, 0, 0, 0, 0, 0, 0, '2013-05-16 18:39:23', '2013-05-16 22:41:21', 1);
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `note` (
   `saturday` tinyint(1) DEFAULT '0',
   `public` tinyint(1) NOT NULL,
   PRIMARY KEY (`nid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `note`
@@ -170,7 +171,9 @@ INSERT INTO `note` (`nid`, `uid`, `pid`, `text_body`, `keyword`, `dt_inserted`, 
 (14, 1, 3, '', '', NULL, '2013-05-16 23:39:01', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (15, 1, 3, '123', '', NULL, '2013-05-16 23:39:16', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (16, 1, 3, '', '', NULL, '2013-05-16 23:42:59', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 1),
-(17, 1, 3, '', '', '2013-05-17 00:00:00', '2013-05-16 23:43:24', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(17, 1, 3, '', '', '2013-05-17 00:00:00', '2013-05-16 23:43:24', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(18, 11, 1, 'asdf', 'asdf', '2013-05-16 18:30:05', '2013-05-16 22:30:05', 1, '2013-05-13 21:27:27', '2013-05-13 21:27:27', 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(19, 11, 1, 'asfd', 'asfd', '2013-05-16 18:30:24', '2013-05-16 22:30:24', 1, '2013-05-20 21:30:06', '2013-05-13 21:30:06', 0, 0, 0, 0, 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -335,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`uid`, `uname`, `email`, `password`, `dt_inserted`, `dt_edited`, `first_name`, `last_name`, `gender`, `photo`, `description`, `last_latitude`, `last_longitude`, `current_state`, `active`) VALUES
-(1, 'adam', 'adam@email.com', 'adam', '2013-04-17 15:58:59', '2013-05-03 14:35:33', 'adam', 'adam', 2, 'adam', 'jkl;jjkl;jjkl;jlk;jkl;j;kljkl;j;jkl;j;jkl;;j', 1, 1, 'traveling', 1),
+(1, 'adam', 'adam@email.com', 'adam', '2013-04-17 15:58:59', '2013-05-16 22:38:03', 'adam', 'adam', 2, 'adam', 'hey you', 1, 1, 'traveling', 1),
 (2, 'bob', 'bob@email.com', 'bob', '2013-04-17 15:58:59', '0000-00-00 00:00:00', 'bob', 'bob', 1, 'bob', 'bob', 2, 2, 'working', 1),
 (3, 'carol', 'carol@email.com', 'carol', '2013-04-17 15:58:59', '0000-00-00 00:00:00', 'carol', 'carol', 0, 'carol', 'carol', 3, 3, 'at lunch', 1),
 (4, 'dump', 'dump@email.com', 'dump', '2013-04-17 15:58:59', '0000-00-00 00:00:00', 'dump', 'dump', 0, 'dump', 'dump', 4, 4, 'sleeping', 1),
