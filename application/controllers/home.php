@@ -346,5 +346,119 @@ class Home extends CI_Controller{
         $this->load->helper('url');
         redirect($newURL,'location');
 	}
+	
+	public function explore(){
+		$this->load->model('User');
+		$this->User->uid= $_SESSION['user']['uid'];
+		$userinfo = current($this->User->get());
+		
+		$latitude = $userinfo['last_latitude'];
+		$longitude = $userinfo['last_longitude'];
+		$radius = 1.25;
+		
+		$this->load->model('Place');
+		$place = $this->Place->getNearby($latitude,$longitude,$radius);
+		#dump($place);		
+		
+		$totalNote=[];
+		$likeCountArray = [];
+		$muteNid = [];
+		#dump(1);
+		foreach($place as $singlePlace) {
+		//  begin of copy from function place
+		
+            $this->load->model('Note');
+			#dump($singlePlace['pid']);
+            $this->Note->pid = $singlePlace['pid'];
+            $this->Note->order_by = 'note_dt_inserted desc';
+            $note = $this->Note->get();
+			#dump($note);
+			#dump(count($note));
+		    #dump(2);
+		    // start handle sort by like count
+			/*
+		    $this->load->model('Like_note');
+		    $likeCount = $this->Like_note->countLike();
+		   # $likeCountArray = [];
+		    foreach($likeCount as $sinleLikeCount){
+			    $likeCountArray[$sinleLikeCount['nid']]=intval($sinleLikeCount['time']);
+		    }*/
+		    #dump($likeCountArray);
+		
+			/*
+		    foreach($note as $k=>$singleNote){
+			    if(array_key_exists($singleNote['nid'],$likeCountArray)) {
+				    $note[$k]['time']=$likeCountArray[$singleNote['nid']];
+			    } else {
+				    $note[$k]['time']=0;
+			    }
+			}*/
+			#dump($singleNote);
+		    
+			/*
+		    function my_sort($a, $b){
+			if ( !(isset($a['time']) && isset($b['time'])) ) return 0;
+			if ($b['time'] < $a['time']) {
+			    return -1;
+			} else if  ($b['time'] > $a['time']) {
+			    return 1;
+			} else {
+			    return $b['note_dt_inserted'] - $a['note_dt_inserted'];
+			}
+		    }
+		
+		    usort($note, "my_sort");*/
+		#dump($note);
+		
+		#dump($note);
+		// end of handle sort by like count
+		if(count($note)>0)$totalNote = array_merge((array)$totalNote,(array)$note);
+		#$totalNote = array_merge((array)$totalNote,(array)$note);
+			#unset($note);
+            #$data['note']=$note;
+			/*
+		    $this->load->model('Silent');
+		    $this->Silent->uid= $_SESSION['user']['uid'];
+		    $muteNote = $this->Silent->get();
+		    
+		    foreach($muteNote as $singleMuteNote){
+			    array_push($muteNid,$singleMuteNote['nid']);
+		    }
+		    #$data['muteNid']=$muteNid;
+		
+		    $this->load->model('Like_note');
+		    $this->Like_note->uid= $_SESSION['user']['uid'];
+		    $likeNote = $this->Like_note->get();
+		    #dump($likeNote);
+		    $likeNid = [];
+		    foreach($likeNote as $singleLikeNote){
+			#dump($singleLikeNote);
+			    array_push($likeNid,$singleLikeNote['nid']);
+		    }
+		    #dump($likeNid);
+		    #$data['likeNid']=$likeNid;
+		
+			*/
+		// end of copy from function place
+	    }
+		
+		#dump($totalNote);
+		
+		$note = $totalNote;
+		$data['note']=$note;
+		
+	    $this->load->model('Silent');
+	    $this->Silent->uid= $_SESSION['user']['uid'];
+	    $muteNote = $this->Silent->get();
+	    
+	    foreach($muteNote as $singleMuteNote){
+		    array_push($muteNid,$singleMuteNote['nid']);
+	    }
+	    $data['muteNid']=$muteNid;
+		
+		$data['userinfo']=$userinfo;
+		$this->load->view('explore',$data);
+		$this->load->view('footer');
+	}
 }
 ?>

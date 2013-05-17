@@ -36,4 +36,9 @@ class Place extends CI_Model {
 		$this->db->insert('place', $arr);
 		return $this->db->insert_id();
 	}	 
+	
+	function getNearby($latitude,$longitude,$radius){
+		$query = $this->db->query('select * from place where (place.latitude-'.$latitude.')*(place.latitude-'.$latitude.')+ (place.longitude-'.$longitude.')*(place.longitude-'.$longitude.')<'.$radius.'*'.$radius);
+		return  $query->result_array();
+	}
 }
