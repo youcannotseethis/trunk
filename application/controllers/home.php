@@ -110,10 +110,14 @@ class Home extends CI_Controller{
         $data['followed']        = $followed;
         
         if($uid != $_SESSION['user']['uid']){
-        	$this->load->model('follow');
-        	$this->follow->current_u = $_SESSION['user']['uid'];
-        	$this->follow->followed_user = $uid;
-        	$data['relation'] = $this->follow->get();
+        	$this->load->model('follow','f1');
+        	$this->f1->current_u = $_SESSION['user']['uid'];
+        	$this->f1->followed_user = $uid;
+        	$data['relation'] = $this->f1->get();
+        	$this->load->model('follow','f2');
+        	$this->f2->current_u = $uid;
+        	$this->f2->followed_user = $_SESSION['user']['uid'];
+        	$data['relation2'] = $this->f2->get();
         }
         # load user view
         if (empty($user)) {
@@ -126,7 +130,10 @@ class Home extends CI_Controller{
     
       public function filters(){
         auth_route('user');
-        $user = $_SESSION['user'];
+        $user_id = $_SESSION['user']['uid'];
+        $this->load->model('User');
+        $this->User->uid = $user_id;
+        $user = current($this->User->get());
         $filters = array();
         if($user){
             $this->load->model('Filter');
@@ -203,7 +210,13 @@ class Home extends CI_Controller{
 		$this->load->view('footer');
 		
     }
-    
+   	public function currentstate(){
+   		auth_route('user');
+   		$this->load->model('User');
+   		$post = $this->input->post();
+   		$this->User->update(array('current_state'=>$post['fid']), $post['uid']);
+   		exit('reload');
+   	}
 	public function places(){
 		#auth_route('user');
 		$this->title = 'Places';
@@ -406,130 +419,37 @@ class Home extends CI_Controller{
 		#dump(1);
 		foreach($place as $singlePlace) {
 		//  begin of copy from function place
-			
             $this->load->model('Note','note1',true);
 			#dump($singlePlace['pid']);
             $this->note1->pid = $singlePlace['pid'];
             $this->note1->order_by = 'note_dt_inserted desc';
             $note = $this->note1->get();
-			#dump($note);
-			#dump(count($note));
-		    #dump(2);
-		    // start handle sort by like count
-			/*
-		    $this->load->model('Like_note');
-		    $likeCount = $this->Like_note->countLike();
-		   # $likeCountArray = [];
-		    foreach($likeCount as $sinleLikeCount){
-			    $likeCountArray[$sinleLikeCount['nid']]=intval($sinleLikeCount['time']);
-		    }*/
-		    #dump($likeCountArray);
-		
-			/*
-		    foreach($note as $k=>$singleNote){
-			    if(array_key_exists($singleNote['nid'],$likeCountArray)) {
-				    $note[$k]['time']=$likeCountArray[$singleNote['nid']];
-			    } else {
-				    $note[$k]['time']=0;
-			    }
-			}*/
-			#dump($singleNote);
-		    
-			/*
-		    function my_sort($a, $b){
-			if ( !(isset($a['time']) && isset($b['time'])) ) return 0;
-			if ($b['time'] < $a['time']) {
-			    return -1;
-			} else if  ($b['time'] > $a['time']) {
-			    return 1;
-			} else {
-			    return $b['note_dt_inserted'] - $a['note_dt_inserted'];
-			}
-		    }
-		
-		    usort($note, "my_sort");*/
-		#dump($note);
-		
-		#dump($note);
 		// end of handle sort by like count
-		if(count($note)>0)$totalNote = array_merge((array)$totalNote,(array)$note);
-		#$totalNote = array_merge((array)$totalNote,(array)$note);
-			#unset($note);
-            #$data['note']=$note;
-			/*
-		    $this->load->model('Silent');
-		    $this->Silent->uid= $_SESSION['user']['uid'];
-		    $muteNote = $this->Silent->get();
-		    
-		    foreach($muteNote as $singleMuteNote){
-			    array_push($muteNid,$singleMuteNote['nid']);
-		    }
-		    #$data['muteNid']=$muteNid;
-		
-		    $this->load->model('Like_note');
-		    $this->Like_note->uid= $_SESSION['user']['uid'];
-		    $likeNote = $this->Like_note->get();
-		    #dump($likeNote);
-		    $likeNid = [];
-		    foreach($likeNote as $singleLikeNote){
-			#dump($singleLikeNote);
-			    array_push($likeNid,$singleLikeNote['nid']);
-		    }
-		    #dump($likeNid);
-		    #$data['likeNid']=$likeNid;
-		
-			*/
-		// end of copy from function place
-	    }
-		
-		#dump($totalNote);
-		
+		if(count($note)>0)
+			$totalNote = array_merge((array)$totalNote,(array)$note);
+		}
 		$note1 = $totalNote;
 	
-		if($userinfo['current_state']){
-			$this->load->model('Filter');
-			$this->Filter->state = $userinfo['current_state'];
-			$this->Filter->uid = $userinfo['uid'];
-			$filters = $this->Filter->get();
-			if($filters){			//get all related tags and put them into array $tags
-				$tags_temp = array();
-				$tags = array();
-				foreach($filters as $filter){
-					$tags_temp = json_decode($filter['tags'],true);
-					if($tags_temp){
-						foreach($tags_temp as $tag){
-							array_push($tags, $tag);
-						}
-					}
-				}
-				#exit(json_encode($tags_temp));
-			}
-			if($tags){
-				foreach($tags as $tag){		//get notes whose text_body or keyword like tags of filters
-					$this->load->model('Note','note2',true);
-					$this->note2->searchQ = $tag;
-					$notes_temp[] = $this->note2->get();
-				}
-				$note2 = array();
-				foreach($notes_temp as $notes){
-					foreach($notes as $n){
-						array_push($note2, $n);
-					}
-				}
-				array_unique($note2);
-				#exit(json_encode($note2));
-				if($note2){
-					$note = array_merge($note1, $note2);
-					$data['note']=$note;
-					#dump($note1);
-					#dump($note2);
-				}		
-			}
 			
-		}else $data['note'] = $note1;
-		/*foreach($note1 as $k=>$note){
-			if($note['s_from']<
-		}*/
+		$this->load->model('Filter');
+		$this->Filter->fid = $userinfo['current_state'];
+		$filter = current($this->Filter->get());
+		#dump($filter);
+		
+		if($filter){
+			$tags = json_decode($filter['tags'],true);
+		}
+		#dump($tags);
+		foreach($note1 as $k=>$n){
+				#dump(strpos($n['text_body'],'asdfadsf'));
+				if((strpos($n['text_body'],'food')==false )&&(strpos($n['keyword'],'food')==false )){
+					#unset($note1[$k]);
+				}
+		}
+		
+	
+		#dump($note1);		
+		$data['note'] = $note1;
 	    $this->load->model('Silent');
 	    $this->Silent->uid= $_SESSION['user']['uid'];
 	    $muteNote = $this->Silent->get();

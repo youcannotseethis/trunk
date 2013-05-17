@@ -26,12 +26,14 @@
 		  var popup = L.popup();
 
 		  		function onMapClick(e) {
-		  			popup
+		  			/*popup
 		  				.setLatLng(e.latlng)
 		  				.setContent("You clicked the map at " + e.latlng.toString())
 		  				.openOn(map);
+		  			*/
 						$('input[name="latitude"]').val(e.latlng.lat.toString());
 						$('input[name="longitude"]').val(e.latlng.lng.toString());
+						
 		  		}
 
 		  		map.on('click', onMapClick);

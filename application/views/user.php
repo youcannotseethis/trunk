@@ -6,15 +6,20 @@ if ($user['uid']==$_SESSION['user']['uid']) {
 } elseif(!$relation){?>
 	<a class="btn btn-primary" style="float:left;margin-right:30px" href="javascript:void(0)" onclick="follow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
 		Follow
-	</a>	
-	<div class="btn btn-info"><?php echo 'Following you'?></div>
-<?php }else{?>
+	</a>
+	<?php if($relation2){?>	
+		<div class="btn btn-info"><?php echo 'Following you'?></div>	
+	<?php }else{?>
+			<div class="btn btn-info"><?php echo 'Not following you'?></div>
+<?php }}else{?>
 	<a class="btn btn-danger" style="float:left;margin-right:30px"  href="javascript:void(0)" onclick="unfollow(<?php echo $_SESSION['user']['uid'];?>, <?php echo $user['uid'];?>,this)">
 		Unfollow
 	</a>
-	<div class="btn btn-info"><?php echo 'Not following you'?></div>
-
-<?php }
+	<?php if($relation2){?>	
+		<div class="btn btn-info"><?php echo 'Following you'?></div>	
+	<?php }else{?>
+			<div class="btn btn-info"><?php echo 'Not following you'?></div>
+<?php }}
 ?></p>
 <p><b>Gender:</b> <?php
     if ($user['gender']==1){
