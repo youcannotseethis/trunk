@@ -21,9 +21,11 @@ class Search extends CI_Controller{
     }
     public function index(){
         auth_route('user');
-        $user = $_SESSION['user'];
-        $this->load->model('Note');
         $this->load->view('search', $data);
         $this->load->view('footer');
     }
-    
+    public function u(){
+    	$q = $this->input->get('q');
+    	$this->load->model('User');
+    	$this->User->searchQ();
+    }

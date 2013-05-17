@@ -11,13 +11,13 @@ class User extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('user');
 		$where = ' 1=1 ';
-		/*
+		
 		if(isset($this->searchQ)){
 			$q = $this->db->escape('%'.$this->searchQ.'%');
-			$where .= " AND ((LOWER(user.name) LIKE $q) OR (LOWER(user.email) LIKE $q)
-						OR (LOWER(user.id) LIKE $q))";
+			$where .= " AND ((LOWER(user.uname) LIKE $q) OR (LOWER(user.email) LIKE $q)
+						OR (LOWER(user.uid) LIKE $q))";
 		}
-		*/
+
 		if(isset($this->uid)){
 			$where .= ' AND user.uid = '.$this->uid;
 		}		
@@ -58,7 +58,6 @@ class User extends CI_Model {
 	function prep_password($password){
 		 return sha1($password.$this->config->item('encryption_key'));
 	}
-	 
 	function login($username, $password){
 		 $this->db->where('uname', $username);
 		 $this->db->where('password', $password);#$this->prep_password($password));
