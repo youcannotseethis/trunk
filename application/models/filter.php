@@ -24,7 +24,7 @@ class Filter extends CI_Model {
 			$where .= ' AND filter.uid = '.$this->uid;
 		}
 		if(isset($this->state)){
-			$where .= ' AND filter.state = '.$this->state;
+			$where .= ' AND filter.state = '.$this->db->escape($this->state);
 		}
 		if($params){
 			$params['filter.active']=1;

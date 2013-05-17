@@ -192,7 +192,7 @@ class Home extends CI_Controller{
     }
     
 	public function places(){
-		auth_route('user');
+		#auth_route('user');
 		$this->title = 'Places';
 		$this->load->model('Place');
 		$places = $this->Place->get();
@@ -333,6 +333,7 @@ class Home extends CI_Controller{
     }
 	
 	public function fakeloc(){
+		auth_route('user');
 		$this->load->model('User');
 		$this->User->uid = $_SESSION['user']['uid'];
 		$userinfo = current($this->User->get());
@@ -358,6 +359,7 @@ class Home extends CI_Controller{
 	}
 	
 	public function explore(){
+		auth_route('user');
 		$this->load->model('User');
 		$this->User->uid= $_SESSION['user']['uid'];
 		$userinfo = current($this->User->get());
@@ -376,12 +378,12 @@ class Home extends CI_Controller{
 		#dump(1);
 		foreach($place as $singlePlace) {
 		//  begin of copy from function place
-		
-            $this->load->model('Note');
+			
+            $this->load->model('Note','note1',true);
 			#dump($singlePlace['pid']);
-            $this->Note->pid = $singlePlace['pid'];
-            $this->Note->order_by = 'note_dt_inserted desc';
-            $note = $this->Note->get();
+            $this->note1->pid = $singlePlace['pid'];
+            $this->note1->order_by = 'note_dt_inserted desc';
+            $note = $this->note1->get();
 			#dump($note);
 			#dump(count($note));
 		    #dump(2);
@@ -454,9 +456,52 @@ class Home extends CI_Controller{
 		
 		#dump($totalNote);
 		
-		$note = $totalNote;
-		$data['note']=$note;
-		
+		$note1 = $totalNote;
+	
+		if($userinfo['current_state']){
+			$this->load->model('Filter');
+			$this->Filter->state = $userinfo['current_state'];
+			$this->Filter->uid = $userinfo['uid'];
+			$filters = $this->Filter->get();
+			if($filters){			//get all related tags and put them into array $tags
+				$tags_temp = array();
+				$tags = array();
+				foreach($filters as $filter){
+					$tags_temp = json_decode($filter['tags'],true);
+					if($tags_temp){
+						foreach($tags_temp as $tag){
+							array_push($tags, $tag);
+						}
+					}
+				}
+				#exit(json_encode($tags_temp));
+			}
+			if($tags){
+				foreach($tags as $tag){		//get notes whose text_body or keyword like tags of filters
+					$this->load->model('Note','note2',true);
+					$this->note2->searchQ = $tag;
+					$notes_temp[] = $this->note2->get();
+				}
+				$note2 = array();
+				foreach($notes_temp as $notes){
+					foreach($notes as $n){
+						array_push($note2, $n);
+					}
+				}
+				array_unique($note2);
+				#exit(json_encode($note2));
+				if($note2){
+					$note = array_merge($note1, $note2);
+					$data['note']=$note;
+					#dump($note1);
+					#dump($note2);
+				}		
+			}
+			
+		}else $data['note'] = $note1;
+		foreach($note1 as $k=>$note){
+			if($note['s_from']<
+		}
 	    $this->load->model('Silent');
 	    $this->Silent->uid= $_SESSION['user']['uid'];
 	    $muteNote = $this->Silent->get();

@@ -31,11 +31,13 @@
             <a class="brand" href="">Jingo</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li><a href="">Home</a></li>
-                <li><a href="/trunk/index.php/search">Search</a></li> 
-                <li><a href="/trunk/index.php/places">Places</a></li>
-                <li><a href="/trunk/index.php/explore">Explore</a></li>
+                <li><a href="/trunk/index.php/home">Home</a></li>
+              	<li><a href="/trunk/index.php/explore">Explore</a></li>
                 <li><a href="/trunk/index.php/fakeloc">My Location</a></li>
+            	<li><a href="/trunk/index.php/search">Search</a></li> 
+                <li><a href="/trunk/index.php/places">Places</a></li>
+
+
                 <?php if($_SESSION){ ?>
                 <li><a href="/trunk/index.php/user?uid=
 					<?php
