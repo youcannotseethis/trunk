@@ -321,5 +321,30 @@ class Home extends CI_Controller{
         $a = 'reload';
         exit($a);
     }
+	
+	public function fakeloc(){
+		$this->load->model('User');
+		$this->User->uid = $_SESSION['user']['uid'];
+		$userinfo = current($this->User->get());
+		$data['userinfo']=$userinfo;
+		$this->load->view('fakeloc',$data);
+		$this->load->view('footer');
+	}
+	
+	public function update_last_loc(){
+		// update last_latitude_longitude
+		$this->load->model('User');
+		$arr = array(
+            'last_latitude' => $this->input->post('latitude'), 
+            'last_longitude' => $this->input->post('longitude')  
+		);
+		$this->User->update($arr,$this->input->post('uid'));
+		// insert to user localtion record
+		// TO DO
+		//
+		$newURL = '/index.php/home/fakeloc';
+        $this->load->helper('url');
+        redirect($newURL,'location');
+	}
 }
 ?>
