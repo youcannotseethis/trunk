@@ -41,6 +41,7 @@
       <h1><?php echo $place['pname']?></h1>
       <br/>
        <button class="btn btn-large btn-primary" type="button" id="addNoteBtn">Add your note!</button>
+       <button class="btn btn-large btn-info" type="button" id="checkin" onclick="checkin(<?php echo $_SESSION['user']['uid'];?>, <?php echo $place['latitude'];?>, <?php echo $place['longitude'];?>,this)">Check In!</button>
        <div id='insert_form' style='display:none;'>
 		   <?php #dump(BASE_URI); ?>
            <form action="<?php echo BASE_URI.'index.php/home/add_note'; ?>" method="post" onsubmit="validateForm(this);return false;">
@@ -103,7 +104,7 @@
           <tr class="info">
               <td><a href="note?nid=<?php echo $row['nid'];?>"><?php echo $index;$index+=1; ?></a></td>
               <td><?php echo $row['text_body']." #".$row['keyword']; ?></td> 
-              <td>by <a href="user?uid=<?php echo $row['uid']?>"><?php echo $row['first_name'].' '.$row['last_name']; ?></a></td> 
+              <td>by <a href="user?uid=<?php echo $row['uid']?>"><?php echo $row['uname']; ?></a></td> 
               <td>when <?php echo $row['note_dt_inserted']; ?></td> 
 			  <td>liked by <?php echo $row['time']; ?> time</td> 
 			  <?php if (!in_array($row['nid'],$likeNid)) { ?>
@@ -122,6 +123,10 @@
       ?>
     </div>
     <script>
+    
+    $( document ).ready(function() {
+  		$('#checkin').show('slow');
+	});
     $("#addNoteBtn").click(function() {
         $("#insert_form").show("fast");
     });
@@ -156,6 +161,15 @@
 	        wc_act(uid,nid,obj,'mute','note');
 	    }
 	};
+	function checkin(uid,latitude,longitude, obj){
+		$(obj).removeClass('btn-info').addClass('btn-danger').text("You've checked in!");
+		$.post('<?php echo BASE_URI;?>index.php/home/checkin',{uid:uid,latitude:latitude,longitude:longitude},function(data){
+			if(data=='reload'){
+				window.location.reload();
+			}else{
+				alert(data);}
+		});
+	};
 	function wc_act(uid,nid,obj,action,type){
 	    var obj = $(obj);
 
@@ -166,6 +180,8 @@
 	 	    functionName = '<?php echo BASE_URI;?>index.php/home/likeNote';
 	    } else if (action=='unlike') {
 	    	functionName = '<?php echo BASE_URI;?>index.php/home/unlikeNote';
+	    } else if(action == 'checkin'){
+	    	functionName = '<?php echo BASE_URI;?>index.php/home/checkin';
 	    }
 	    $.post(functionName, {uid:uid,nid:nid,action:action},function(data){
 	       // obj.parent().parent().hide();  //用jquery移除被delete的那行

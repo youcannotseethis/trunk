@@ -1,5 +1,5 @@
 
-<form id="search" class="margin:50px;" action="/trunk/index.php/search/note" method="post" >
+<form id="search" style="margin-left: 183px; margin-top: 73px;" action="/trunk/index.php/search/note" method="post" >
 	<div>
 		<input type="text" class="input-large search-query" style="width:650px;height:50px;" name="q_note" >
 
@@ -7,7 +7,7 @@
 	</div>
 </form>
 
-<form id="search" class="margin:50px;" action="/trunk/index.php/search/user" method="post" >
+<form id="search" style="margin-left: 183px; margin-top: 73px;" action="/trunk/index.php/search/user" method="post" >
 	<div>
 		<input type="text" class="input-large search-query" style="width:650px;height:50px;" name="q_user" >
 

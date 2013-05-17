@@ -1,6 +1,5 @@
 <?php #dump($user); dump($filters); ?>
 <div>Hey you</div>
-
 <div>
 	<a href="/trunk/index.php/setting/set_profile">Edit Profile</a>
 </div>

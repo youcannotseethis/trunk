@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 17, 2013 at 07:50 AM
+-- Generation Time: May 17, 2013 at 08:42 AM
 -- Server version: 5.5.30
 -- PHP Version: 5.4.14
 
@@ -354,14 +354,26 @@ INSERT INTO `user` (`uid`, `uname`, `email`, `password`, `dt_inserted`, `dt_edit
 --
 
 CREATE TABLE IF NOT EXISTS `user_location_record` (
+  `loc_record_id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL DEFAULT '0',
   `dt_inserted` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
   `dt_edited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`uid`,`dt_inserted`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`loc_record_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `user_location_record`
+--
+
+INSERT INTO `user_location_record` (`loc_record_id`, `uid`, `dt_inserted`, `latitude`, `longitude`, `dt_edited`, `active`) VALUES
+(1, 1, '2013-05-17 08:32:08', 40.701, -73.9951, '2013-05-17 12:32:08', 1),
+(2, 1, '2013-05-17 08:38:06', 40.2, -75.1, '2013-05-17 12:38:06', 1),
+(3, 1, '2013-05-17 08:38:07', 40.2, -75.1, '2013-05-17 12:38:07', 1),
+(4, 1, '2013-05-17 08:38:11', 40.2, -75.1, '2013-05-17 12:38:11', 1),
+(5, 1, '2013-05-17 08:41:24', 40.701, -73.9951, '2013-05-17 12:41:24', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

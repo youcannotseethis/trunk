@@ -52,6 +52,12 @@ class Home extends CI_Controller{
     	auth_route('user');
     	
     }
+    public function checkin(){
+    	$post = $this->input->post();
+    	$this->load->model('User_location_record');
+    	$checkin_id = $this->User_location_record->insert($post);	
+    	exit('reload');
+    }
     public function note(){
         $nid = $this->input->get('nid');
         # get note itself
@@ -371,9 +377,10 @@ class Home extends CI_Controller{
             'last_longitude' => $this->input->post('longitude')  
 		);
 		$this->User->update($arr,$this->input->post('uid'));
-		// insert to user localtion record
-		// TO DO
-		//
+		$this->load->model('User_location_record');
+		$loc_record = $this->User_location_record->insert(array('uid'=>$this->input->post('uid'),
+															'latitude' => $this->input->post('latitude'), 
+            												'longitude' => $this->input->post('longitude')));
 		$newURL = '/index.php/home/fakeloc';
         $this->load->helper('url');
         redirect($newURL,'location');
