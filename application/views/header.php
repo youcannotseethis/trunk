@@ -34,6 +34,8 @@
                 <li><a href="">Home</a></li>
                 <li><a href="/trunk/index.php/search">Search</a></li> 
                 <li><a href="/trunk/index.php/places">Places</a></li>
+                <li><a href="/trunk/index.php/explore">Explore</a></li>
+                <li><a href="/trunk/index.php/fakeloc">My Location</a></li>
                 <?php if($_SESSION){ ?>
                 <li><a href="/trunk/index.php/user?uid=
 					<?php
@@ -50,7 +52,7 @@
           <?php } else { ?> <!-- already login -->            
             <li class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                  Account
+                  <?php echo $_SESSION['user']['uname'];?>
                   <b class="caret"></b>
              </a>
            <ul class="dropdown-menu">

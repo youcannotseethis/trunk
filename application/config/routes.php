@@ -49,7 +49,7 @@ $route['filter'] = "home/filter";
 $route['note'] = "home/note";
 $route['place'] = "home/place";
 $route['places'] = "home/places";
-
-
+$route['explore'] = "home/explore";
+$route['fakeloc'] = "home/fakeloc";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

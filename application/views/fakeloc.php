@@ -71,7 +71,7 @@
                <span class="help-block">  </span>
 			   
                <button type="submit" class="btn btn-primary">Submit</button>
-			   <button type="reset" class="btn btn-inverse" id="cancelBtn">Reset</button>   
+			   <button type="hidden" class="btn btn-inverse" id="cancelBtn">Reset</button>   
              </fieldset>
 			     
            </form>

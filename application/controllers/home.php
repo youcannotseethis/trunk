@@ -48,7 +48,10 @@ class Home extends CI_Controller{
         #dump($_SESSION);
         $this->load->view('footer', $data);
     }
-    
+    public function notes(){	//view my notes
+    	auth_route('user');
+    	
+    }
     public function note(){
         $nid = $this->input->get('nid');
         # get note itself
@@ -349,6 +352,7 @@ class Home extends CI_Controller{
 		// insert to user localtion record
 		// TO DO
 		//
+		
 		$newURL = '/index.php/home/fakeloc';
         $this->load->helper('url');
         redirect($newURL,'location');
